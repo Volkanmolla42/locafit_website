@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+Sitemap: https://locafitstudio.com/sitemap.xml
+
+# Disallow admin and private routes
+Disallow: /admin/
+Disallow: /api/
+Disallow: /private/

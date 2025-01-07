@@ -2,9 +2,362 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Locomotive Scroll styles */
+html.has-scroll-smooth {
+  overflow: hidden;
+}
+
+html.has-scroll-dragging {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.has-scroll-smooth body {
+  overflow: hidden;
+}
+
+.has-scroll-smooth [data-scroll-container] {
+  min-height: 100vh;
+}
+
+[data-scroll-direction="horizontal"] [data-scroll-container] {
+  height: 100vh;
+  display: inline-block;
+  white-space: nowrap;
+}
+
+[data-scroll-direction="horizontal"] [data-scroll-section] {
+  display: inline-block;
+  vertical-align: top;
+  white-space: nowrap;
+  height: 100%;
+}
+
+/* Custom Scrollbar - Webkit (Chrome, Safari, Edge) */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 100px;
+}
+
+::-webkit-scrollbar-track:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 75, 129, 0.5);
+  border-radius: 100px;
+  transition: all 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 75, 129, 0.8);
+  cursor: pointer;
+}
+
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+/* Hide scrollbar when not scrolling */
+::-webkit-scrollbar-thumb:vertical:hover,
+::-webkit-scrollbar-thumb:horizontal:hover {
+  min-height: 30px;
+}
+
+/* Custom Scrollbar - Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 75, 129, 0.5) transparent;
+}
+
+*:hover {
+  scrollbar-color: rgba(255, 75, 129, 0.8) rgba(0, 0, 0, 0.05);
+}
+
+/* Custom Scrollbar */
+.c-scrollbar {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 8px;
+  height: 100%;
+  transform-origin: center right;
+  transition: transform 0.3s, opacity 0.3s;
+  opacity: 0;
+}
+
+.c-scrollbar:hover {
+  transform: scaleX(1.45);
+}
+
+.c-scrollbar:hover,
+.has-scroll-scrolling .c-scrollbar,
+.has-scroll-dragging .c-scrollbar {
+  opacity: 1;
+}
+
+.c-scrollbar_thumb {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: rgba(255, 75, 129, 0.5);
+  width: 5px;
+  border-radius: 10px;
+  margin: 2px;
+  cursor: -webkit-grab;
+  cursor: grab;
+  transition: background 0.3s ease;
+}
+
+.has-scroll-dragging .c-scrollbar_thumb {
+  cursor: -webkit-grabbing;
+  cursor: grabbing;
+}
+
+.c-scrollbar_thumb:hover {
+  background: rgba(255, 75, 129, 0.8);
+}
+
+/* Smooth Scroll */
+html {
+  scroll-behavior: smooth;
+  overflow-y: overlay; /* Makes scrollbar overlay content */
+}
+
+/* Smooth Scroll Animation */
+.scroll-section {
+  will-change: transform;
+}
+
+.scroll-trigger {
+  visibility: hidden;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.scroll-trigger.is-visible {
+  visibility: visible;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Button Animation */
+.appointment-btn {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  background: linear-gradient(45deg, #ff4b81, #ff6b6b);
+  box-shadow: 0 4px 15px rgba(255, 75, 129, 0.3);
+}
+
+.appointment-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255, 255, 255, 0.3),
+    transparent
+  );
+  transition: all 0.5s ease;
+}
+
+.appointment-btn:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 6px 20px rgba(255, 75, 129, 0.4);
+}
+
+.appointment-btn:hover::before {
+  left: 100%;
+}
+
+.appointment-btn:active {
+  transform: translateY(1px);
+}
+
+/* Pulse Animation */
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(255, 75, 129, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 15px rgba(255, 75, 129, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(255, 75, 129, 0);
+  }
+}
+
+.pulse {
+  animation: pulse 2s infinite;
+}
+
+/* Hover Effects */
+.feature-item {
+  transition: all 0.3s ease;
+}
+
+.feature-item:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.feature-item:hover .feature-icon {
+  transform: scale(1.1);
+}
+
+.feature-icon {
+  transition: transform 0.3s ease;
+}
+
+/* Button Hover Effect */
+.hover-glow {
+  position: relative;
+  overflow: hidden;
+}
+
+.hover-glow::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0) 60%);
+  transform: scale(0);
+  transition: transform 0.5s ease-out;
+}
+
+.hover-glow:hover::after {
+  transform: scale(1);
+}
+
+/* Responsive Utilities */
+.container-fluid {
+  @apply w-full px-4 sm:px-6 lg:px-8;
+}
+
+.container-responsive {
+  @apply w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+}
+
+/* Responsive Typography */
+.text-responsive {
+  @apply text-base sm:text-lg md:text-xl lg:text-2xl;
+}
+
+.heading-responsive {
+  @apply text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold;
+}
+
+.subheading-responsive {
+  @apply text-xl sm:text-2xl md:text-3xl lg:text-4xl;
+}
+
+/* Responsive Grid */
+.grid-responsive-2 {
+  @apply grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 lg:gap-8;
+}
+
+.grid-responsive-3 {
+  @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8;
+}
+
+.grid-responsive-4 {
+  @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8;
+}
+
+/* Responsive Spacing */
+.section-spacing {
+  @apply py-8 sm:py-12 md:py-16 lg:py-20;
+}
+
+.element-spacing {
+  @apply my-4 sm:my-6 md:my-8 lg:my-10;
+}
+
+/* Animation Classes */
+.fade-in {
+  @apply opacity-0 animate-[fadeIn_0.5s_ease-out_forwards];
+}
+
+.slide-in {
+  @apply translate-y-4 opacity-0 animate-[slideIn_0.5s_ease-out_forwards];
+}
+
+.scale-in {
+  @apply scale-95 opacity-0 animate-[scaleIn_0.5s_ease-out_forwards];
+}
+
+/* Loading States */
+.loading-overlay {
+  @apply absolute inset-0 bg-white bg-opacity-75 flex items-center justify-center z-50;
+}
+
+.loading-pulse {
+  @apply animate-pulse bg-gray-200 rounded;
+}
+
+.loading-shimmer {
+  @apply relative overflow-hidden bg-gray-200 before:absolute before:inset-0 before:-translate-x-full before:animate-[shimmer_2s_infinite] before:bg-gradient-to-r before:from-transparent before:via-white/60 before:to-transparent;
+}
+
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(1rem);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    transform: scale(0.95);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Custom styles */
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -15,7 +368,7 @@
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
+  color: rgb(var(--foreground-rgb));
+  background: rgb(var(--background-end-rgb));
   font-family: Arial, Helvetica, sans-serif;
 }

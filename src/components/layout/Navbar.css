@@ -1,0 +1,29 @@
+.wave-effect {
+  position: relative;
+  overflow: hidden;
+}
+
+.wave-effect::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.3) 50%,
+    transparent 100%
+  );
+  animation: wave 2s infinite linear;
+}
+
+@keyframes wave {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 200%;
+  }
+}

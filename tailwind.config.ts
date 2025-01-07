@@ -1,18 +1,35 @@
-import type { Config } from "tailwindcss";
+import type { Config } from 'tailwindcss'
 
-export default {
+const config: Config = {
   content: [
-    "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
+    './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/components/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
     extend: {
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+        primary: {
+          DEFAULT: '#FF69B4', // Ana pembe
+          light: '#FFB6C1', // Açık pembe
+        },
+        secondary: {
+          DEFAULT: '#98FB98', // Açık yeşil
+          dark: '#90EE90', // Koyu açık yeşil
+        },
+        accent: {
+          DEFAULT: '#DDA0DD', // Mor
+          light: '#E6E6FA', // Lavanta
+        },
+        background: '#FFF5F7', // Çok açık pembe arka plan
+      },
+      fontFamily: {
+        sans: ['var(--font-inter)'],
+        serif: ['var(--font-playfair)'],
       },
     },
   },
   plugins: [],
-} satisfies Config;
+}
+
+export default config
