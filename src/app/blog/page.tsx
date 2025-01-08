@@ -1,10 +1,9 @@
 'use client'
 
 import { useState } from 'react'
-import { useApp } from '@/context/AppContext'
 import { motion, AnimatePresence } from 'framer-motion'
 import OptimizedImage from '@/components/common/OptimizedImage'
-import { FaSearch, FaClock, FaUser, FaTag } from 'react-icons/fa'
+import { FaSearch, FaClock, FaUser } from 'react-icons/fa'
 
 // Örnek blog verileri
 const blogPosts = [
@@ -12,7 +11,7 @@ const blogPosts = [
     id: 1,
     title: 'EMS Antrenmanının Faydaları',
     excerpt: 'EMS antrenmanı nedir ve vücudunuza olan faydalarını keşfedin. Modern teknoloji ile geleneksel fitness\'i birleştiren bu yenilikçi antrenman metodunu yakından tanıyın.',
-    image: '/ems-photo.webp',
+    image: '/images/gallery/ems-training.webp',
     category: 'EMS',
     date: '2024-01-07',
     author: 'Ayşe Yılmaz',
@@ -23,7 +22,7 @@ const blogPosts = [
     id: 2,
     title: 'Doğru Beslenme Nasıl Olmalı?',
     excerpt: 'Fitness hedeflerinize ulaşmak için beslenme önerileri. Protein, karbonhidrat ve yağ dengesini nasıl kurmalısınız? İşte size özel beslenme tavsiyeleri.',
-    image: '/images/gallery/studio-1.webp',
+    image: '/images/gallery/nutrition.webp',
     category: 'Beslenme',
     date: '2024-01-06',
     author: 'Mehmet Demir',
@@ -34,7 +33,7 @@ const blogPosts = [
     id: 3,
     title: 'Düzenli Egzersizin Zihinsel Faydaları',
     excerpt: 'Egzersizin sadece fiziksel değil, zihinsel sağlığınız üzerindeki olumlu etkileri. Stres yönetiminden odaklanmaya, spor ve mental sağlık ilişkisi.',
-    image: '/ems-photo.webp',
+    image: '/images/gallery/mental-health.webp',
     category: 'Sağlık',
     date: '2024-01-05',
     author: 'Dr. Zeynep Kaya',
@@ -45,7 +44,7 @@ const blogPosts = [
     id: 4,
     title: 'EMS ile Kilo Verme Rehberi',
     excerpt: 'EMS antrenmanları ile etkili kilo verme stratejileri. Metabolizmanızı hızlandırın ve yağ yakımını maksimuma çıkarın.',
-    image: '/images/gallery/studio-1.webp',
+    image: '/images/gallery/weight-loss.webp',
     category: 'EMS',
     date: '2024-01-04',
     author: 'Ali Yıldız',
@@ -62,7 +61,6 @@ const categories = [
 ]
 
 export default function BlogPage() {
-  const { state } = useApp()
   const [searchQuery, setSearchQuery] = useState('')
   const [activeCategory, setActiveCategory] = useState('all')
 
@@ -184,7 +182,7 @@ export default function BlogPage() {
           {/* Blog Listesi */}
           <div className="lg:col-span-3">
             <motion.div layout className="grid grid-cols-1 md:grid-cols-2 gap-6 min-h-[400px]">
-              <AnimatePresence mode="wait">
+              <AnimatePresence mode="popLayout">
                 {filteredPosts.map(post => (
                   <motion.article
                     key={post.id}
