@@ -94,11 +94,11 @@ export default function Navbar() {
 
           <div className="hidden md:flex items-center">
             {navItems.map((item) => (
-              <div key={item.href} className="nav-item group px-2 overflow-hidden">
+              <div key={item.href} className="nav-item group px-1 overflow-hidden">
                 {item.label === 'Randevu' ? (
                   <Link
                     href={item.href}
-                    className="relative px-6 py-2 bg-gradient-to-r from-primary to-purple-500 rounded-lg overflow-hidden"
+                    className="relative px-4 py-2 bg-gradient-to-r from-primary to-purple-500 rounded-lg overflow-hidden"
                   >
                     <span className="relative z-10 text-lg text-white font-medium tracking-wide">
                       {item.label}
