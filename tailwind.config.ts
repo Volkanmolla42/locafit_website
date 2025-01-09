@@ -27,6 +27,15 @@ const config: Config = {
         sans: ['var(--font-inter)'],
         serif: ['var(--font-playfair)'],
       },
+      keyframes: {
+        wave: {
+          '0%': { transform: 'translateX(-100%)' },
+          '100%': { transform: 'translateX(200%)' }
+        }
+      },
+      animation: {
+        'wave': 'wave 2s infinite linear'
+      }
     },
   },
   plugins: [],

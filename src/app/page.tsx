@@ -148,9 +148,9 @@ export default function Home() {
       gsap.to('.appointment-btn', {
         opacity: 1,
         y: 0,
-        duration: 1,
-        delay: 0.6,
-        ease: 'back.out(1.2)'
+        duration: .5,
+        delay: 0.4,
+        ease: 'power1.in'
       })
 
       // Hero section fade in
@@ -221,10 +221,10 @@ export default function Home() {
   }, [isClient])
 
   return (
-    <main className="min-h-screen bg-background" data-scroll-container>
+    <main className="min-h-screen bg-background overflow-x-hidden" data-scroll-container>
       {/* Hero Section */}
       <div data-scroll-section>
-        <section className="relative h-screen flex items-center justify-center px-4 hero-section overflow-hidden">
+        <section className="relative min-h-screen flex items-center justify-center px-4 hero-section overflow-hidden">
           <div className="absolute inset-0 overflow-hidden hero-bg">
             <Image
               src="/bg.avif"
@@ -248,7 +248,7 @@ export default function Home() {
               style={{ opacity: 0, transform: 'translateY(50px)' }}
             >
               <span className="flex items-center space-x-2">
-                <span>Randevu Al</span>
+                <span>Randevularım</span>
                 <svg 
                   xmlns="http://www.w3.org/2000/svg" 
                   className="h-5 w-5" 
