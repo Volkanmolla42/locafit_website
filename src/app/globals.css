@@ -353,22 +353,18 @@ html {
 
 /* Custom styles */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
 body {
-  color: rgb(var(--foreground-rgb));
   background: rgb(var(--background-end-rgb));
   font-family: Arial, Helvetica, sans-serif;
+}
+
+@layer base {
+  :root {
+    --radius: 0.5rem;
+  }
 }
