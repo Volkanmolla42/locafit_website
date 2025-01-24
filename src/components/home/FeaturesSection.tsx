@@ -1,50 +1,95 @@
 'use client'
 
+import { motion } from 'framer-motion';
+
 const features = [
   {
-    icon: (
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-    ),
-    title: "Hızlı Sonuç",
-    description: "20 dakikalık EMS antrenmanı ile klasik 2 saatlik antrenman etkisi"
+    title: 'Kişiye Özel Program',
+    description: 'Her bireyin ihtiyaçlarına ve hedeflerine göre özel olarak hazırlanmış antrenman programları',
+    icon: '👤',
+    color: 'bg-gradient-to-br from-pink-50 to-pink-100'
   },
   {
-    icon: (
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-    ),
-    title: "Güvenli Antrenman",
-    description: "Eklemlere binen yükü minimize eden teknoloji"
+    title: 'Uzman Eğitmenler',
+    description: 'Deneyimli ve sertifikalı eğitmenler eşliğinde güvenli ve etkili antrenmanlar',
+    icon: '🎯',
+    color: 'bg-gradient-to-br from-rose-50 to-rose-100'
   },
   {
-    icon: (
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
-    ),
-    title: "Uzman Kadro",
-    description: "Deneyimli ve profesyonel eğitmenler eşliğinde antrenman"
+    title: 'Modern Ekipmanlar',
+    description: 'En son teknoloji EMS ekipmanları ve modern fitness aletleri ile donatılmış salon',
+    icon: '⚡',
+    color: 'bg-gradient-to-br from-pink-50 to-pink-100'
+  },
+  {
+    title: 'Esnek Programlama',
+    description: 'Sizin programınıza uygun esnek ders saatleri ve randevu sistemi',
+    icon: '📅',
+    color: 'bg-gradient-to-br from-rose-50 to-rose-100'
+  },
+  {
+    title: 'Beslenme Desteği',
+    description: 'Uzman diyetisyenler tarafından hazırlanan kişiye özel beslenme programları',
+    icon: '🥗',
+    color: 'bg-gradient-to-br from-pink-50 to-pink-100'
+  },
+  {
+    title: 'Sürekli Takip',
+    description: 'Düzenli ölçüm ve değerlendirmelerle ilerlemenizin sürekli takibi',
+    icon: '📊',
+    color: 'bg-gradient-to-br from-rose-50 to-rose-100'
   }
-]
+];
 
-export default function FeaturesSection() {
+const FeaturesSection = () => {
   return (
-    <section className="py-20 px-4 bg-primary/5">
-      <div className="max-w-6xl mx-auto">
-        <h2 className="text-3xl md:text-4xl font-serif text-primary text-center mb-12">
-          Neden Loca Fit Studio?
-        </h2>
-        <div className="grid md:grid-cols-3 gap-8">
+    <section className="py-24 bg-white">
+      <div className="container mx-auto px-4">
+        <div className="text-center mb-16">
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-4xl font-bold text-gray-800 mb-4"
+          >
+            Neden Bizi Seçmelisiniz?
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="text-gray-600 max-w-2xl mx-auto"
+          >
+            Size özel hazırlanmış programlar ve profesyonel ekibimizle hedeflerinize ulaşmanıza yardımcı oluyoruz
+          </motion.p>
+        </div>
+
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {features.map((feature, index) => (
-            <div key={index} className="text-center p-6 feature-item bg-white rounded-xl hover:shadow-lg transition-shadow duration-300">
-              <div className="w-16 h-16 bg-primary/20 rounded-full flex items-center justify-center mx-auto mb-4 feature-icon">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <motion.div
+              key={feature.title}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              className={`${feature.color} rounded-3xl p-8 hover:shadow-lg transition-all duration-300 group`}
+            >
+              <div className="mb-6">
+                <span className="text-4xl group-hover:scale-110 inline-block transform transition-transform duration-300">
                   {feature.icon}
-                </svg>
+                </span>
               </div>
-              <h3 className="text-xl font-serif text-primary mb-2">{feature.title}</h3>
-              <p className="text-gray-700">{feature.description}</p>
-            </div>
+              <h3 className="text-xl font-semibold text-gray-800 mb-3">
+                {feature.title}
+              </h3>
+              <p className="text-gray-600">
+                {feature.description}
+              </p>
+            </motion.div>
           ))}
         </div>
       </div>
     </section>
-  )
-}
+  );
+};
+
+export default FeaturesSection;

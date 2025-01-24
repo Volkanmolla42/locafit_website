@@ -108,11 +108,7 @@ export default function Home() {
     <main className="min-h-screen bg-background overflow-x-hidden" data-scroll-container>
       {/* Hero Section */}
       <div data-scroll-section>
-        <HeroSection 
-          subtitle="EMS teknolojisi ile kişiye özel fitness deneyimi"
-          ctaText="Randevularım"
-          onCtaClick={() => window.location.href = '/randevu'}
-        />
+        <HeroSection />
       </div>
 
       {/* Hizmetler Section */}
