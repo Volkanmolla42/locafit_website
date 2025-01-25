@@ -37,7 +37,7 @@ const contactInfo = [
     icon: FaMapMarkerAlt,
     label: "Adres",
     value: "İstanbul, Türkiye",
-    href: "https://www.google.com/maps/dir/41.0386432,40.5110784/Yenik%C3%B6y,+Loca+Cafe+%26+Restaurant,+Cumhuriyet+Cd.+No:167,+53020+Rize+Merkez%2FRize/@41.0316583,40.5074892,15z/data=!3m1!4b1!4m9!4m8!1m1!4e1!1m5!1m1!1s0x40667b72027f8d3f:0x2108a8ef6c0bf1d4!2m2!1d40.5200339!2d41.0247231?entry=ttu&g_ep=EgoyMDI1MDEyMi4wIKXMDSoASAFQAw%3D%3D",
+    href: "#",
   },
 ];
 
