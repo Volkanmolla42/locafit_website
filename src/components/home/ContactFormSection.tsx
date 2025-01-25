@@ -1,7 +1,7 @@
 'use client'
 import { useState } from 'react'
 import { Phone, User, MessageSquare, Send, Loader2 } from 'lucide-react'
-import MapComponent from './MapComponent'
+// import MapComponent from './MapComponent'
 
 export default function ContactFormSection() {
   const [formData, setFormData] = useState({
@@ -123,7 +123,8 @@ export default function ContactFormSection() {
       <p className="text-gray-600 dark:text-gray-400 text-center mb-12 max-w-2xl mx-auto">
         Soru ve önerileriniz için bize ulaşın. En kısa sürede size dönüş yapacağız.
       </p>
-      <div className="grid md:grid-cols-2 gap-8">
+      <div className="grid gap-8">
+        {/* md:grid-cols-2  */}
         <div className="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700">
           <form onSubmit={handleSubmit} className="space-y-6">
             <div>
@@ -237,9 +238,12 @@ export default function ContactFormSection() {
           </form>
         </div>
 
+          {/**
         <div className="rounded-xl overflow-hidden h-[500px]">
           <MapComponent />
+           * 
         </div>
+           */}
       </div>
     </div>
   )
