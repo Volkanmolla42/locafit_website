@@ -1,10 +1,11 @@
 'use client'
 
-import { useEffect } from 'react'
+import { Suspense, useEffect } from 'react'
 import { usePathname, useSearchParams } from 'next/navigation'
 import NProgress from 'nprogress'
 import 'nprogress/nprogress.css'
 import './navigationEvents.css'
+import Loading from '@/app/loading'
 
 NProgress.configure({
   minimum: 0.2,
@@ -13,7 +14,7 @@ NProgress.configure({
   showSpinner: false,
 })
 
-export function NavigationEvents() {
+function NavigationEventsContent() {
   const pathname = usePathname()
   const searchParams = useSearchParams()
 
@@ -25,4 +26,12 @@ export function NavigationEvents() {
   }, [pathname, searchParams])
 
   return null
+}
+
+export function NavigationEvents() {
+  return (
+    <Suspense fallback={<Loading />}>
+      <NavigationEventsContent />
+    </Suspense>
+  )
 }
