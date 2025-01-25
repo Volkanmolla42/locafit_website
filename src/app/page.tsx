@@ -5,7 +5,6 @@ import HeroSection from '@/components/home/HeroSection'
 import ServicesSection from '@/components/home/ServicesSection'
 import FeaturesSection from '@/components/home/FeaturesSection'
 import EMSInfoSection from '@/components/home/EMSInfoSection'
-import ContactFormSection from '@/components/home/ContactFormSection'
 
 export default function Home() {
   const [isClient, setIsClient] = useState(false)
@@ -126,10 +125,7 @@ export default function Home() {
         <EMSInfoSection />
       </div>
 
-      {/* İletişim Form Section */}
-      <div data-scroll-section>
-        <ContactFormSection />
-      </div>
+      
     </main>
   )
 }

@@ -1,7 +1,7 @@
 'use client'
-
 import { useState } from 'react'
-
+import { Phone, User, MessageSquare, Send, Loader2 } from 'lucide-react'
+import MapComponent from './MapComponent'
 export default function ContactFormSection() {
   const [formData, setFormData] = useState({
     name: '',
@@ -36,8 +36,8 @@ export default function ContactFormSection() {
       isValid = false
     }
 
-    if (formData.message.trim().length < 10) {
-      errors.message = 'Mesaj en az 10 karakter olmalıdır'
+    if (formData.message.trim().length < 8) {
+      errors.message = 'Mesaj en az 8 karakter olmalıdır'
       isValid = false
     }
 
@@ -115,56 +115,69 @@ export default function ContactFormSection() {
   }
 
   return (
-    <section className="py-20 px-4 bg-primary/5">
-      <div className="max-w-4xl mx-auto">
-        <h2 className="text-3xl md:text-4xl font-serif text-primary text-center mb-12">
-          Bize Ulaşın
-        </h2>
-        <div className="bg-white p-8 rounded-lg shadow-lg contact-form">
+    <div className="py-12">
+      <h2 className="text-3xl font-serif text-primary text-center mb-4">
+        Bize Ulaşın
+      </h2>
+      <p className="text-gray-600 text-center mb-12 max-w-2xl mx-auto">
+        Soru ve önerileriniz için bize ulaşın. En kısa sürede size dönüş yapacağız.
+      </p>
+      <div className="grid md:grid-cols-2 gap-8">
+        <div className="bg-white p-8 rounded-xl shadow-sm border border-gray-100">
           <form onSubmit={handleSubmit} className="space-y-6">
-            <div className="grid md:grid-cols-2 gap-6">
-              <div>
-                <label htmlFor="name" className="block text-sm font-medium text-black mb-1">
-                  Adınız
-                </label>
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  className={`w-full px-4 py-2 border rounded-md focus:ring-primary focus:border-primary text-black ${
-                    formErrors.name ? 'border-red-500' : 'border-gray-300'
-                  }`}
-                  required
-                />
-                {formErrors.name && (
-                  <p className="mt-1 text-sm text-red-500">{formErrors.name}</p>
-                )}
-              </div>
-              <div>
-                <label htmlFor="phone" className="block text-sm font-medium text-black mb-1">
-                  Telefon
-                </label>
-                <input
-                  type="tel"
-                  id="phone"
-                  name="phone"
-                  value={formData.phone}
-                  onChange={handleChange}
-                  placeholder="5XX XXX XX XX"
-                  className={`w-full px-4 py-2 border rounded-md focus:ring-primary focus:border-primary text-black ${
-                    formErrors.phone ? 'border-red-500' : 'border-gray-300'
-                  }`}
-                  required
-                />
-                {formErrors.phone && (
-                  <p className="mt-1 text-sm text-red-500">{formErrors.phone}</p>
-                )}
-              </div>
-            </div>
             <div>
-              <label htmlFor="message" className="block text-sm font-medium text-black mb-1">
+              <label htmlFor="name" className="flex items-center gap-2 text-sm font-medium text-gray-700 mb-1">
+                <User className="w-4 h-4" />
+                Adınız
+              </label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                value={formData.name}
+                onChange={handleChange}
+                className={`w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-primary/20 focus:border-primary transition-colors ${
+                  formErrors.name ? 'border-red-300 bg-red-50' : 'border-gray-200'
+                }`}
+                placeholder="Adınızı girin"
+                required
+              />
+              {formErrors.name && (
+                <p className="mt-1 text-sm text-red-500 flex items-center gap-1">
+                  <span className="block w-1 h-1 rounded-full bg-red-500" />
+                  {formErrors.name}
+                </p>
+              )}
+            </div>
+            
+            <div>
+              <label htmlFor="phone" className="flex items-center gap-2 text-sm font-medium text-gray-700 mb-1">
+                <Phone className="w-4 h-4" />
+                Telefon
+              </label>
+              <input
+                type="tel"
+                id="phone"
+                name="phone"
+                value={formData.phone}
+                onChange={handleChange}
+                placeholder="5XX XXX XX XX"
+                className={`w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-primary/20 focus:border-primary transition-colors ${
+                  formErrors.phone ? 'border-red-300 bg-red-50' : 'border-gray-200'
+                }`}
+                required
+              />
+              {formErrors.phone && (
+                <p className="mt-1 text-sm text-red-500 flex items-center gap-1">
+                  <span className="block w-1 h-1 rounded-full bg-red-500" />
+                  {formErrors.phone}
+                </p>
+              )}
+            </div>
+
+            <div>
+              <label htmlFor="message" className="flex items-center gap-2 text-sm font-medium text-gray-700 mb-1">
+                <MessageSquare className="w-4 h-4" />
                 Mesajınız
               </label>
               <textarea
@@ -173,33 +186,55 @@ export default function ContactFormSection() {
                 value={formData.message}
                 onChange={handleChange}
                 rows={4}
-                className={`w-full px-4 py-2 border rounded-md focus:ring-primary focus:border-primary text-black ${
-                  formErrors.message ? 'border-red-500' : 'border-gray-300'
+                className={`w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-primary/20 focus:border-primary transition-colors ${
+                  formErrors.message ? 'border-red-300 bg-red-50' : 'border-gray-200'
                 }`}
+                placeholder="Mesajınızı girin"
                 required
               />
               {formErrors.message && (
-                <p className="mt-1 text-sm text-red-500">{formErrors.message}</p>
+                <p className="mt-1 text-sm text-red-500 flex items-center gap-1">
+                  <span className="block w-1 h-1 rounded-full bg-red-500" />
+                  {formErrors.message}
+                </p>
               )}
             </div>
-            <div>
-              <button
-                type="submit"
-                disabled={loading}
-                className="w-full bg-primary text-white py-2 px-4 rounded-md hover:bg-primary/90 transition-colors disabled:opacity-50"
-              >
-                {loading ? 'Gönderiliyor...' : 'Gönder'}
-              </button>
-            </div>
-            {success && (
-              <p className="text-green-500 text-center">Mesajınız başarıyla gönderildi!</p>
-            )}
-            {error && (
-              <p className="text-red-500 text-center">{error}</p>
-            )}
+
+            <button
+              type="submit"
+              disabled={loading}
+              className="w-full bg-primary text-white py-3 px-4 rounded-lg hover:bg-primary/90 transition-colors disabled:opacity-50 flex items-center justify-center gap-2 font-medium"
+            >
+              {loading ? (
+                <>
+                  <Loader2 className="w-4 h-4 animate-spin" />
+                  Gönderiliyor...
+                </>
+              ) : (
+                <>
+                  <Send className="w-4 h-4" />
+                  Gönder
+                </>
+              )}
+            </button>
           </form>
+
+          {error && (
+            <div className="mt-4 p-3 bg-red-50 border border-red-100 text-red-600 text-sm rounded-lg">
+              {error}
+            </div>
+          )}
+          
+          {success && (
+            <div className="mt-4 p-3 bg-green-50 border border-green-100 text-green-600 text-sm rounded-lg">
+              Mesajınız başarıyla gönderildi. En kısa sürede size dönüş yapacağız.
+            </div>
+          )}
+        </div>
+        <div className="h-max rounded-xl overflow-hidden border border-gray-200">
+          <MapComponent />
         </div>
       </div>
-    </section>
+    </div>
   )
 }

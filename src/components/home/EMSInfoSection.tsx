@@ -58,7 +58,7 @@ const EMSInfoSection = () => {
               transition={{ duration: 0.6 }}
             >
               <h2 className="text-4xl font-bold text-gray-800 mb-4">
-               <span className='text-pink-500 border-b-2 border-pink-500 mr-2'>
+               <span title="Electric Muscle Stimulation" className='text-pink-500 border-b-2 border-pink-500 mr-2 cursor-help'>
                 EMS
                 </span> 
                  Teknolojisi ile Tanışın

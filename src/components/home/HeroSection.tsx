@@ -103,19 +103,19 @@ const HeroSection = () => {
   return (
     <section
       ref={sectionRef}
-      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-pink-50 to-pink-100"
+      className="relative min-h-screen flex py-16 overflow-hidden bg-gradient-to-br from-pink-50 to-pink-100"
     >
       {/* Dekoratif arka plan elementleri */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute -top-20 -right-20 w-96 h-96 bg-pink-200/50 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob"></div>
-        <div className="absolute -bottom-20 -left-20 w-96 h-96 bg-pink-300/50 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000"></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-pink-100/50 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-4000"></div>
+        <div className="absolute -top-20 -right-20 w-96 h-96 bg-pink-200/70 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob"></div>
+        <div className="absolute -bottom-20 -left-20 w-96 h-96 bg-pink-300/70 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000"></div>
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-pink-200/50 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-4000"></div>
       </div>
 
       {/* Ana içerik */}
-      <div className="relative z-10 container mx-auto px-4 py-32 text-center">
-        <div className="hero-content space-y-8">
-          <div className="relative inline-block mb-8">
+      <div className="relative z-10 container mx-auto px-4 text-center">
+        <div className="hero-content ">
+          <div className="relative inline-block mb-4">
             <Image
               src="/lotus.png"
               alt="Loca Fit Logo"
@@ -132,12 +132,11 @@ const HeroSection = () => {
             Loca Fit Studio
           </h1>
 
-
           <p
             ref={subtitleRef}
             className="text-xl md:text-2xl text-gray-700 max-w-2xl mx-auto leading-relaxed font-medium"
           >
-            Sağlıklı başla için profesyonel eğitmenlerimizle tanışın ve
+            Sağlıklı başlangıç için profesyonel eğitmenlerimizle tanışın ve
             hedeflerinize ulaşın.
           </p>
 
