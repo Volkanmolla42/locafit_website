@@ -164,7 +164,7 @@ export default function Footer() {
                 href="https://portfolio-volkanmolla42s-projects.vercel.app/en#about"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="font-serif italic bg-gradient-to-r from-gray-800 to-zinc-900 bg-clip-text text-transparent hover:from-purple-400 hover:to-pink-400 transition-all duration-300"
+                className="font-serif italic text-gray-600 transition-all duration-300 hover:text-pink-500"
               >
                 Volkan Molla
               </Link>
