@@ -48,7 +48,7 @@ export default function GalleryPage() {
     : images.filter(img => img.category === selectedCategory);
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-pink-50 to-white py-24">
+    <div className="min-h-screen bg-gradient-to-b from-pink-50 to-white dark:from-gray-900 dark:to-gray-800 py-24">
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -56,10 +56,10 @@ export default function GalleryPage() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-800 mb-4">
+          <h1 className="text-4xl md:text-5xl font-bold text-gray-800 dark:text-gray-100 mb-4">
             Galeri
           </h1>
-          <p className="text-gray-600 max-w-2xl mx-auto">
+          <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
             Stüdyomuzdan kareler ve mutlu müşterilerimizin başarı hikayeleri
           </p>
         </motion.div>
@@ -75,8 +75,8 @@ export default function GalleryPage() {
               onClick={() => setSelectedCategory(category)}
               className={`px-6 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
                 selectedCategory === category
-                  ? 'bg-pink-500 text-white shadow-lg'
-                  : 'bg-white text-gray-600 hover:bg-pink-100'
+                  ? 'bg-pink-500 text-white shadow-lg dark:bg-pink-600'
+                  : 'bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:bg-pink-100 dark:hover:bg-pink-900/30'
               }`}
             >
               {category.charAt(0).toUpperCase() + category.slice(1)}
@@ -94,7 +94,7 @@ export default function GalleryPage() {
               transition={{ duration: 0.5, delay: index * 0.1 }}
               className="relative group"
             >
-              <div className="aspect-w-4 aspect-h-3 rounded-2xl overflow-hidden bg-pink-100">
+              <div className="aspect-w-4 aspect-h-3 rounded-2xl overflow-hidden bg-pink-100 dark:bg-gray-800">
                 <Image
                   src={image.src}
                   alt={image.alt}
@@ -102,7 +102,7 @@ export default function GalleryPage() {
                   className="object-cover transform group-hover:scale-105 transition-transform duration-500"
                   onClick={() => setSelectedImage(image.src)}
                 />
-                <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-all duration-300 flex items-center justify-center">
+                <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 dark:group-hover:bg-opacity-40 transition-all duration-300 flex items-center justify-center">
                   <p className="text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-lg font-medium">
                     {image.alt}
                   </p>
@@ -115,7 +115,7 @@ export default function GalleryPage() {
         {/* Lightbox */}
         {selectedImage && (
           <div
-            className="fixed inset-0 bg-black bg-opacity-90 z-50 flex items-center justify-center p-4"
+            className="fixed inset-0 bg-black bg-opacity-90 dark:bg-opacity-95 z-50 flex items-center justify-center p-4"
             onClick={() => setSelectedImage(null)}
           >
             <motion.div
@@ -132,7 +132,7 @@ export default function GalleryPage() {
                 className="rounded-lg"
               />
               <button
-                className="absolute top-4 right-4 text-white text-xl hover:text-pink-500 transition-colors"
+                className="absolute top-4 right-4 text-white text-xl hover:text-pink-500 dark:hover:text-pink-400 transition-colors"
                 onClick={() => setSelectedImage(null)}
               >
                 ✕

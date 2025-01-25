@@ -20,9 +20,33 @@ const navItems = [
 export default function Navbar() {
   const pathname = usePathname();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [theme, setTheme] = useState<'light' | 'dark'>('light');
   const headerRef = useRef(null);
   const navRef = useRef(null);
   const logoRef = useRef(null);
+
+  useEffect(() => {
+    // Theme'i kontrol et
+    const isDark = document.documentElement.classList.contains('dark');
+    setTheme(isDark ? 'dark' : 'light');
+
+    // Theme değişikliklerini dinle
+    const observer = new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
+        if (mutation.attributeName === 'class') {
+          const isDark = document.documentElement.classList.contains('dark');
+          setTheme(isDark ? 'dark' : 'light');
+        }
+      });
+    });
+
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['class'],
+    });
+
+    return () => observer.disconnect();
+  }, []);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -33,7 +57,7 @@ export default function Navbar() {
           end: "+=100",
           scrub: true,
         },
-        backgroundColor: "rgba(255,255,255,0.8)",
+        backgroundColor: theme === 'dark' ? "rgba(17, 24, 39, 0.8)" : "rgba(255, 255, 255, 0.8)",
         height: "64px", // Smaller height when scrolled
         ease: "power2.out",
       });
@@ -67,12 +91,12 @@ export default function Navbar() {
     });
 
     return () => ctx.revert();
-  }, []);
+  }, [theme]);
 
   return (
     <header
       ref={headerRef}
-      className="fixed w-full z-50 transition-all duration-300 bg-pink-50/90 backdrop-blur-md border-b border-pink-100 shadow-sm"
+      className="fixed w-full z-50 transition-all duration-300 bg-pink-50/90 dark:bg-gray-900/90 backdrop-blur-md border-b border-pink-100 dark:border-gray-800 shadow-sm"
     >
       <nav ref={navRef} className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 md:h-20 transition-all duration-300">
@@ -94,9 +118,9 @@ export default function Navbar() {
                 />
               </div>
               <div className="flex flex-col">
-                <span className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-rose-400 via-pink-400 to-purple-400 bg-clip-text text-transparent font-playfair whitespace-nowrap transition-all duration-300 group-hover:from-rose-500 group-hover:to-purple-500">
+                <span className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-rose-400 via-pink-400 to-purple-400 dark:from-rose-300 dark:via-pink-300 dark:to-purple-300 bg-clip-text text-transparent font-playfair whitespace-nowrap transition-all duration-300 group-hover:from-rose-500 group-hover:to-purple-500 dark:group-hover:from-rose-400 dark:group-hover:to-purple-400">
                   Loca Fit
-                  <span className="text-xs md:text-sm text-pink-500/70 tracking-[0.2em] md:tracking-[0.3em] uppercase ml-2 transition-colors duration-300 group-hover:text-pink-600">
+                  <span className="text-xs md:text-sm text-pink-500/70 dark:text-pink-400/70 tracking-[0.2em] md:tracking-[0.3em] uppercase ml-2 transition-colors duration-300 group-hover:text-pink-600 dark:group-hover:text-pink-300">
                     Studio
                   </span>
                 </span>
@@ -113,20 +137,20 @@ export default function Navbar() {
               >
                 <Link
                   href={item.href}
-                  className={`relative px-3 py-2 rounded-lg text-sm font-medium transition-all duration-300 hover:text-pink-600 group ${
+                  className={`relative px-3 py-2 rounded-lg text-sm font-medium transition-all duration-300 hover:text-pink-600 dark:hover:text-pink-300 group ${
                     pathname === item.href
-                      ? "text-pink-600"
-                      : "text-pink-700/70 hover:text-pink-800"
+                      ? "text-pink-600 dark:text-pink-300"
+                      : "text-pink-700/70 dark:text-pink-300/70 hover:text-pink-800 dark:hover:text-pink-200"
                   }`}
                 >
                   {item.label}
-                  <span className="absolute inset-x-0 bottom-0 h-0.5 bg-gradient-to-r from-rose-300 to-pink-300 transform origin-left scale-x-0 transition-transform duration-300 group-hover:scale-x-100" />
+                  <span className="absolute inset-x-0 bottom-0 h-0.5 bg-gradient-to-r from-rose-300 to-pink-300 dark:from-rose-400 dark:to-pink-400 transform origin-left scale-x-0 transition-transform duration-300 group-hover:scale-x-100" />
                 </Link>
               </div>
             ))}
             <Link
               href="/randevularim"
-              className="ml-4 px-4 py-2 rounded-lg bg-gradient-to-r from-rose-400 to-pink-400 text-white font-medium text-sm transition-all duration-300 hover:from-rose-500 hover:to-pink-500 hover:shadow-lg hover:shadow-pink-200 transform hover:-translate-y-0.5"
+              className="ml-4 px-4 py-2 rounded-lg bg-gradient-to-r from-rose-400 to-pink-400 dark:from-rose-500 dark:to-pink-500 text-white font-medium text-sm transition-all duration-300 hover:from-rose-500 hover:to-pink-500 dark:hover:from-rose-400 dark:hover:to-pink-400 hover:shadow-lg hover:shadow-pink-200 dark:hover:shadow-pink-500/20 transform hover:-translate-y-0.5"
             >
               Randevularım
             </Link>
@@ -135,7 +159,7 @@ export default function Navbar() {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden p-2 rounded-lg text-pink-700/70 hover:text-pink-800 hover:bg-pink-100/50 transition-all duration-300"
+            className="md:hidden p-2 rounded-lg text-pink-700/70 dark:text-pink-300/70 hover:text-pink-800 dark:hover:text-pink-200 hover:bg-pink-100/50 dark:hover:bg-pink-900/50 transition-all duration-300"
           >
             <span className="sr-only">Open menu</span>
             {isMobileMenuOpen ? (
@@ -157,7 +181,7 @@ export default function Navbar() {
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -10 }}
-              className="absolute top-full left-0 right-0 bg-pink-50/95 backdrop-blur-md shadow-lg border-b border-pink-100 p-4 md:hidden"
+              className="absolute top-full left-0 right-0 bg-pink-50/95 dark:bg-gray-900/95 backdrop-blur-md shadow-lg border-b border-pink-100 dark:border-gray-800 p-4 md:hidden"
             >
               <div className="flex flex-col space-y-1">
                 {navItems.map((item) => (
@@ -166,8 +190,8 @@ export default function Navbar() {
                     href={item.href}
                     className={`block px-4 py-2 text-base ${
                       pathname === item.href
-                        ? "text-pink-600"
-                        : "text-pink-700/70 hover:text-pink-800"
+                        ? "text-pink-600 dark:text-pink-300"
+                        : "text-pink-700/70 dark:text-pink-300/70 hover:text-pink-800 dark:hover:text-pink-200"
                     } transition-colors duration-200`}
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
@@ -176,7 +200,7 @@ export default function Navbar() {
                 ))}
                 <Link
                   href="/randevularim"
-                  className="mt-2 block px-4 py-2 text-base text-center bg-gradient-to-r from-rose-400 to-pink-400 text-white rounded-lg hover:from-rose-500 hover:to-pink-500 transition-all duration-300"
+                  className="mt-2 block px-4 py-2 text-base text-center bg-gradient-to-r from-rose-400 to-pink-400 dark:from-rose-500 dark:to-pink-500 text-white rounded-lg hover:from-rose-500 hover:to-pink-500 dark:hover:from-rose-400 dark:hover:to-pink-400 transition-all duration-300"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   Randevularım

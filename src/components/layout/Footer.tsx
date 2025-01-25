@@ -52,11 +52,11 @@ export default function Footer() {
     <footer className="relative">
       {/* Decorative Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute -top-8 left-1/4 w-64 h-64 bg-gradient-to-br from-rose-200/20 to-purple-200/20 rounded-full blur-3xl transform -translate-x-1/2" />
-        <div className="absolute -top-8 right-1/4 w-64 h-64 bg-gradient-to-bl from-pink-200/20 to-purple-200/20 rounded-full blur-3xl transform translate-x-1/2" />
+        <div className="absolute -top-8 left-1/4 w-64 h-64 bg-gradient-to-br from-rose-200/20 to-purple-200/20 dark:from-rose-900/20 dark:to-purple-900/20 rounded-full blur-3xl transform -translate-x-1/2" />
+        <div className="absolute -top-8 right-1/4 w-64 h-64 bg-gradient-to-bl from-pink-200/20 to-purple-200/20 dark:from-pink-900/20 dark:to-purple-900/20 rounded-full blur-3xl transform translate-x-1/2" />
       </div>
 
-      <div className="relative border-t-2 border-pink-400 bg-gradient-to-b from-pink-50 to-white">
+      <div className="relative border-t-2 border-pink-400 dark:border-pink-600 bg-gradient-to-b from-pink-50 to-white dark:from-gray-900 dark:to-gray-950">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Contact Form Section */}
           <ContactFormSection />
@@ -76,15 +76,15 @@ export default function Footer() {
                   />
                 </div>
                 <div>
-                  <span className="text-2xl font-bold bg-gradient-to-r from-rose-400 via-pink-400 to-purple-400 bg-clip-text text-transparent font-playfair">
+                  <span className="text-2xl font-bold bg-gradient-to-r from-rose-400 via-pink-400 to-purple-400 dark:from-rose-300 dark:via-pink-300 dark:to-purple-300 bg-clip-text text-transparent font-playfair">
                     Loca Fit
-                    <span className="text-xs text-pink-500/70 tracking-[0.2em] uppercase ml-2">
+                    <span className="text-xs text-pink-500/70 dark:text-pink-400/70 tracking-[0.2em] uppercase ml-2">
                       Studio
                     </span>
                   </span>
                 </div>
               </Link>
-              <p className="text-gray-600 leading-relaxed">
+              <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
                 Kadınlara özel profesyonel EMS ve kişisel antrenman stüdyosu.
                 Size özel programlar ve profesyonel eğitmenlerle hedeflerinize
                 ulaşın.
@@ -96,7 +96,7 @@ export default function Footer() {
                     href={social.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-pink-400 hover:text-pink-500 transition-colors"
+                    className="text-pink-400 hover:text-pink-500 dark:text-pink-300 dark:hover:text-pink-400 transition-colors"
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.95 }}
                     title={social.label}
@@ -109,7 +109,7 @@ export default function Footer() {
 
             {/* İletişim */}
             <div className="space-y-6">
-              <h3 className="text-lg font-semibold text-gray-800 font-playfair">
+              <h3 className="text-lg font-semibold text-gray-800 dark:text-gray-200 font-playfair">
                 İletişim
               </h3>
               <div className="space-y-4">
@@ -117,9 +117,9 @@ export default function Footer() {
                   <a
                     key={contact.label}
                     href={contact.href}
-                    className="flex items-center space-x-3 text-gray-600 hover:text-pink-500 transition-colors group"
+                    className="flex items-center space-x-3 text-gray-600 dark:text-gray-400 hover:text-pink-500 dark:hover:text-pink-400 transition-colors group"
                   >
-                    <contact.icon className="w-5 h-5 text-pink-400 group-hover:text-pink-500" />
+                    <contact.icon className="w-5 h-5 text-pink-400 dark:text-pink-300 group-hover:text-pink-500 dark:group-hover:text-pink-400" />
                     <div>
                       <span className="font-medium block text-sm">
                         {contact.label}
@@ -133,16 +133,16 @@ export default function Footer() {
 
             {/* Çalışma Saatleri */}
             <div className="space-y-6">
-              <h3 className="text-lg font-semibold text-gray-800 font-playfair">
+              <h3 className="text-lg font-semibold text-gray-800 dark:text-gray-200 font-playfair">
                 Çalışma Saatleri
               </h3>
               <div className="space-y-4">
                 {workingHours.map((schedule) => (
                   <div
                     key={schedule.day}
-                    className="flex items-center space-x-3 text-gray-600"
+                    className="flex items-center space-x-3 text-gray-600 dark:text-gray-400"
                   >
-                    <FaClock className="w-5 h-5 text-pink-400" />
+                    <FaClock className="w-5 h-5 text-pink-400 dark:text-pink-300" />
                     <div>
                       <span className="font-medium block text-sm">
                         {schedule.day}
@@ -156,7 +156,7 @@ export default function Footer() {
           </div>
 
           {/* Copyright */}
-          <div className="text-center py-6 text-sm text-gray-500 border-t border-gray-100 mt-12">
+          <div className="text-center py-6 text-sm text-gray-500 dark:text-gray-400 border-t border-gray-100 dark:border-gray-800 mt-12">
             <div className="mb-2"> {new Date().getFullYear()} Loca Fit Studio. Tüm hakları saklıdır.</div>
             <div className="text-xs mt-2">
              Designed by{" "}
@@ -164,7 +164,7 @@ export default function Footer() {
                 href="https://portfolio-volkanmolla42s-projects.vercel.app/en#about"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="font-serif italic text-gray-600 transition-all duration-300 hover:text-pink-500"
+                className="font-serif italic text-gray-600 dark:text-gray-400 transition-all duration-300 hover:text-pink-500 dark:hover:text-pink-400"
               >
                 Volkan Molla
               </Link>

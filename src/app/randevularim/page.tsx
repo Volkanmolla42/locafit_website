@@ -143,48 +143,48 @@ export default function RandevuPage() {
   const getStatusColor = (status: string) => {
     switch (status) {
       case 'scheduled':
-        return 'bg-blue-100 text-blue-800'
+        return 'bg-blue-100 text-blue-800 dark:bg-blue-900/50 dark:text-blue-300'
       case 'in-progress':
-        return 'bg-yellow-100 text-yellow-800'
+        return 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900/50 dark:text-yellow-300'
       case 'completed':
-        return 'bg-green-100 text-green-800'
+        return 'bg-green-100 text-green-800 dark:bg-green-900/50 dark:text-green-300'
       case 'cancelled':
-        return 'bg-red-100 text-red-800'
+        return 'bg-red-100 text-red-800 dark:bg-red-900/50 dark:text-red-300'
       default:
-        return 'bg-gray-100 text-gray-800'
+        return 'bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-300'
     }
   }
 
   return (
-    <main className="min-h-screen pt-24 pb-12 bg-gradient-to-b from-white to-gray-50">
+    <main className="min-h-screen pt-24 pb-12 bg-gradient-to-b from-white to-gray-50 dark:from-gray-900 dark:to-gray-800">
       <div className="max-w-4xl mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           className="text-center mb-12"
         >
-          <h1 className="text-4xl font-serif text-primary mb-4">
+          <h1 className="text-4xl font-serif text-primary dark:text-pink-400 mb-4">
             Randevularım
           </h1>
-          <p className="text-gray-600">
+          <p className="text-gray-600 dark:text-gray-400">
             Randevularınızı görüntülemek için telefon numaranızı girin
           </p>
         </motion.div>
 
-        <div className="bg-white rounded-xl shadow-lg p-6 mb-8">
+        <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg dark:shadow-gray-900/50 p-6 mb-8">
           <form onSubmit={handleSearch} className="flex gap-4">
             <input
               type="tel"
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
               placeholder="5XX XXX XX XX"
-              className="flex-1 px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-primary/20 focus:border-primary"
+              className="flex-1 px-4 py-2 border border-gray-200 dark:border-gray-700 dark:bg-gray-700 dark:text-gray-100 rounded-lg focus:ring-2 focus:ring-primary/20 dark:focus:ring-pink-500/20 focus:border-primary dark:focus:border-pink-500 dark:placeholder-gray-400"
               required
             />
             <button
               type="submit"
               disabled={loading}
-              className="px-6 py-2 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors disabled:opacity-50"
+              className="px-6 py-2 bg-primary dark:bg-pink-600 text-white rounded-lg hover:bg-primary/90 dark:hover:bg-pink-500 transition-colors disabled:opacity-50"
             >
               {loading ? 'Aranıyor...' : 'Ara'}
             </button>
@@ -195,7 +195,7 @@ export default function RandevuPage() {
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            className="text-center text-red-500 mb-8"
+            className="text-center text-red-500 dark:text-red-400 mb-8"
           >
             {error}
           </motion.div>
@@ -209,11 +209,11 @@ export default function RandevuPage() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -20 }}
-                className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow"
+                className="bg-white dark:bg-gray-800 rounded-xl shadow-lg dark:shadow-gray-900/50 overflow-hidden hover:shadow-xl dark:hover:shadow-gray-900/70 transition-shadow"
               >
                 <div className="p-6">
                   <div className="flex items-center justify-between mb-4">
-                    <h3 className="text-xl font-serif text-primary">
+                    <h3 className="text-xl font-serif text-primary dark:text-pink-400">
                       Randevu
                     </h3>
                     <span className={`px-3 py-1 rounded-full text-sm ${getStatusColor(appointment.status)}`}>
@@ -221,20 +221,20 @@ export default function RandevuPage() {
                     </span>
                   </div>
                   
-                  <div className="grid md:grid-cols-3 gap-4 text-gray-600 mb-4">
+                  <div className="grid md:grid-cols-3 gap-4 text-gray-600 dark:text-gray-400 mb-4">
                     <div className="flex items-center gap-2">
-                      <FaCalendarAlt className="w-4 h-4 text-primary" />
+                      <FaCalendarAlt className="w-4 h-4 text-primary dark:text-pink-400" />
                       <span>{formatDate(appointment.date)}</span>
                     </div>
                     <div className="flex items-center gap-2">
-                      <FaClock className="w-4 h-4 text-primary" />
+                      <FaClock className="w-4 h-4 text-primary dark:text-pink-400" />
                       <span>{formatTime(appointment.time)}</span>
                     </div>
                   </div>
 
                   {appointment.notes && (
-                    <div className="flex items-start gap-2 text-gray-600 text-sm mt-2">
-                      <FaStickyNote className="w-4 h-4 text-primary mt-1" />
+                    <div className="flex items-start gap-2 text-gray-600 dark:text-gray-400 text-sm mt-2">
+                      <FaStickyNote className="w-4 h-4 text-primary dark:text-pink-400 mt-1" />
                       <p>{appointment.notes}</p>
                     </div>
                   )}

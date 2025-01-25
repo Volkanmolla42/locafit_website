@@ -104,7 +104,7 @@ export default function Home() {
   }, [isClient])
 
   return (
-    <main className="min-h-screen bg-background overflow-x-hidden" data-scroll-container>
+    <main className="min-h-screen bg-background overflow-x-hidden dark:bg-gray-900" data-scroll-container>
       {/* Hero Section */}
       <div data-scroll-section>
         <HeroSection />
@@ -124,8 +124,6 @@ export default function Home() {
       <div data-scroll-section>
         <EMSInfoSection />
       </div>
-
-      
     </main>
   )
 }

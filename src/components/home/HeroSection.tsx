@@ -103,13 +103,13 @@ const HeroSection = () => {
   return (
     <section
       ref={sectionRef}
-      className="relative min-h-screen flex py-16 overflow-hidden bg-gradient-to-br from-pink-50 to-pink-100"
+      className="relative min-h-screen flex py-16 overflow-hidden bg-gradient-to-br from-pink-50 to-pink-100 dark:from-gray-900 dark:to-gray-800"
     >
       {/* Dekoratif arka plan elementleri */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute -top-20 -right-20 w-96 h-96 bg-pink-200/70 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob"></div>
-        <div className="absolute -bottom-20 -left-20 w-96 h-96 bg-pink-300/70 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000"></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-pink-200/50 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-4000"></div>
+        <div className="absolute -top-20 -right-20 w-96 h-96 bg-pink-200/70 dark:bg-pink-500/20 rounded-full mix-blend-multiply dark:mix-blend-soft-light filter blur-xl opacity-70 animate-blob"></div>
+        <div className="absolute -bottom-20 -left-20 w-96 h-96 bg-pink-300/70 dark:bg-pink-600/20 rounded-full mix-blend-multiply dark:mix-blend-soft-light filter blur-xl opacity-70 animate-blob animation-delay-2000"></div>
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-pink-200/50 dark:bg-pink-500/10 rounded-full mix-blend-multiply dark:mix-blend-soft-light filter blur-xl opacity-70 animate-blob animation-delay-4000"></div>
       </div>
 
       {/* Ana içerik */}
@@ -127,14 +127,14 @@ const HeroSection = () => {
 
           <h1
             ref={titleRef}
-            className="text-6xl md:text-8xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-pink-300 mb-6 leading-tight tracking-tighter"
+            className="text-6xl md:text-8xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-pink-300 dark:from-pink-400 dark:to-pink-300 mb-6 leading-tight tracking-tighter"
           >
             Loca Fit Studio
           </h1>
 
           <p
             ref={subtitleRef}
-            className="text-xl md:text-2xl text-gray-700 max-w-2xl mx-auto leading-relaxed font-medium"
+            className="text-xl md:text-2xl text-gray-700 dark:text-gray-400 max-w-2xl mx-auto leading-relaxed font-medium"
           >
             Sağlıklı başlangıç için profesyonel eğitmenlerimizle tanışın ve
             hedeflerinize ulaşın.
@@ -143,7 +143,7 @@ const HeroSection = () => {
           <div ref={ctaRef} className="mt-10">
             <Link
               href="/iletisim"
-              className="appointment-btn inline-block bg-pink-500 hover:bg-pink-600 text-white px-6 py-4 rounded-full text-lg font-semibold transition-colors duration-300 shadow-lg hover:shadow-xl group"
+              className="appointment-btn inline-block bg-pink-500 hover:bg-pink-600 dark:bg-pink-500/80 dark:hover:bg-pink-500 text-white px-6 py-4 rounded-full text-lg font-semibold transition-colors duration-300 shadow-lg hover:shadow-xl group"
             >
               Hemen Başla <span className="inline-block transition-transform duration-300 group-hover:translate-x-2">→</span>
             </Link>
@@ -159,8 +159,8 @@ const HeroSection = () => {
           className="w-full"
         >
           <path
-            fill="#fff"
-            fillOpacity="1"
+            fill="currentColor"
+            className="w-full text-white dark:text-gray-900"
             d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,122.7C672,117,768,139,864,154.7C960,171,1056,181,1152,165.3C1248,149,1344,107,1392,85.3L1440,64L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
           ></path>
         </svg>
