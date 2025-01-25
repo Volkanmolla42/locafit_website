@@ -143,9 +143,9 @@ const HeroSection = () => {
           <div ref={ctaRef} className="mt-10">
             <Link
               href="/iletisim"
-              className="appointment-btn bg-pink-500 hover:bg-pink-600 text-white px-6 py-4 rounded-full text-lg font-semibold transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl"
+              className="appointment-btn inline-block bg-pink-500 hover:bg-pink-600 text-white px-6 py-4 rounded-full text-lg font-semibold transition-colors duration-300 shadow-lg hover:shadow-xl group"
             >
-              Hemen Başla →
+              Hemen Başla <span className="inline-block transition-transform duration-300 group-hover:translate-x-2">→</span>
             </Link>
           </div>
         </div>

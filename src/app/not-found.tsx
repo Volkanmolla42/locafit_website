@@ -6,13 +6,18 @@ import Loading from './loading';
 
 function NotFoundContent() {
   return (
-    <div className="min-h-screen flex items-center justify-center">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">404</h1>
-        <p className="text-xl mb-4">Sayfa Bulunamadı</p>
-        <Link href="/" className="text-blue-500 hover:text-blue-700">
-          Ana Sayfaya Dön
-        </Link>
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-pink-100 to-purple-100">
+      <div className="text-center p-12 bg-white/80 backdrop-blur-sm rounded-3xl shadow-lg border border-pink-200 transform hover:scale-105 transition-all duration-300">
+        <div className="relative">
+          <h1 className="text-7xl font-light mb-6 bg-gradient-to-r from-pink-400 to-purple-500 text-transparent bg-clip-text">404</h1>
+          <p className="text-2xl mb-8 font-light text-gray-600">Üzgünüz, aradığınız sayfayı bulamadık 💝</p>
+          <Link 
+            href="/" 
+            className="inline-block px-8 py-3 text-lg font-medium text-white bg-gradient-to-r from-pink-400 to-purple-500 rounded-full hover:from-pink-500 hover:to-purple-600 transform hover:-translate-y-1 transition-all duration-300 shadow-md hover:shadow-lg"
+          >
+            Ana Sayfaya Dön
+          </Link>
+        </div>
       </div>
     </div>
   );
