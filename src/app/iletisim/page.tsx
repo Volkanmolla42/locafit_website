@@ -1,6 +1,6 @@
 export default function ContactPage() {
   return (
-    <main className="min-h-screen pt-24 pb-12 px-4 bg-gradient-to-b from-white to-gray-50 dark:from-gray-900 dark:to-gray-800">
+    <main className="min-h-screen pt-24 pb-12 px-4 bg-linear-to-b from-white to-gray-50 dark:from-gray-900 dark:to-gray-800">
       <div className="max-w-4xl mx-auto">
         <h1 className="text-4xl font-serif text-primary dark:text-pink-400 text-center mb-12">
           İletişim

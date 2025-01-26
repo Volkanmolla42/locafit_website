@@ -7,37 +7,37 @@ const features = [
     title: 'Kişiye Özel Program',
     description: 'Her bireyin ihtiyaçlarına ve hedeflerine göre özel olarak hazırlanmış antrenman programları',
     icon: '👤',
-    color: 'bg-gradient-to-br from-pink-50 to-pink-100 dark:from-pink-950/50 dark:to-pink-900/50'
+    color: 'bg-linear-to-br from-pink-50 to-pink-100 dark:from-pink-950/50 dark:to-pink-900/50'
   },
   {
     title: 'Uzman Eğitmenler',
     description: 'Deneyimli ve sertifikalı eğitmenler eşliğinde güvenli ve etkili antrenmanlar',
     icon: '🎯',
-    color: 'bg-gradient-to-br from-rose-50 to-rose-100 dark:from-rose-950/50 dark:to-rose-900/50'
+    color: 'bg-linear-to-br from-rose-50 to-rose-100 dark:from-rose-950/50 dark:to-rose-900/50'
   },
   {
     title: 'Modern Ekipmanlar',
     description: 'En son teknoloji EMS ekipmanları ve modern fitness aletleri ile donatılmış salon',
     icon: '⚡',
-    color: 'bg-gradient-to-br from-pink-50 to-pink-100 dark:from-pink-950/50 dark:to-pink-900/50'
+    color: 'bg-linear-to-br from-pink-50 to-pink-100 dark:from-pink-950/50 dark:to-pink-900/50'
   },
   {
     title: 'Esnek Programlama',
     description: 'Sizin programınıza uygun esnek ders saatleri ve randevu sistemi',
     icon: '📅',
-    color: 'bg-gradient-to-br from-rose-50 to-rose-100 dark:from-rose-950/50 dark:to-rose-900/50'
+    color: 'bg-linear-to-br from-rose-50 to-rose-100 dark:from-rose-950/50 dark:to-rose-900/50'
   },
   {
     title: 'Beslenme Desteği',
     description: 'Uzman diyetisyenler tarafından hazırlanan kişiye özel beslenme programları',
     icon: '🥗',
-    color: 'bg-gradient-to-br from-pink-50 to-pink-100 dark:from-pink-950/50 dark:to-pink-900/50'
+    color: 'bg-linear-to-br from-pink-50 to-pink-100 dark:from-pink-950/50 dark:to-pink-900/50'
   },
   {
     title: 'Sürekli Takip',
     description: 'Düzenli ölçüm ve değerlendirmelerle ilerlemenizin sürekli takibi',
     icon: '📊',
-    color: 'bg-gradient-to-br from-rose-50 to-rose-100 dark:from-rose-950/50 dark:to-rose-900/50'
+    color: 'bg-linear-to-br from-rose-50 to-rose-100 dark:from-rose-950/50 dark:to-rose-900/50'
   }
 ];
 
@@ -71,7 +71,7 @@ const FeaturesSection = () => {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className={`${feature.color} rounded-3xl p-8 hover:shadow-lg dark:hover:shadow-pink-950/20 transition-all duration-300 group backdrop-blur-sm`}
+              className={`${feature.color} rounded-3xl p-8 hover:shadow-lg dark:hover:shadow-pink-950/20 transition-all duration-300 group backdrop-blur-xs`}
             >
               <div className="mb-6">
                 <span className="text-4xl group-hover:scale-110 inline-block transform transition-transform duration-300">

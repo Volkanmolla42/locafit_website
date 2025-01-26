@@ -52,11 +52,11 @@ export default function Footer() {
     <footer className="relative">
       {/* Decorative Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute -top-8 left-1/4 w-64 h-64 bg-gradient-to-br from-rose-200/20 to-purple-200/20 dark:from-rose-900/20 dark:to-purple-900/20 rounded-full blur-3xl transform -translate-x-1/2" />
-        <div className="absolute -top-8 right-1/4 w-64 h-64 bg-gradient-to-bl from-pink-200/20 to-purple-200/20 dark:from-pink-900/20 dark:to-purple-900/20 rounded-full blur-3xl transform translate-x-1/2" />
+        <div className="absolute -top-8 left-1/4 w-64 h-64 bg-linear-to-br from-rose-200/20 to-purple-200/20 dark:from-rose-900/20 dark:to-purple-900/20 rounded-full blur-3xl transform -translate-x-1/2" />
+        <div className="absolute -top-8 right-1/4 w-64 h-64 bg-linear-to-bl from-pink-200/20 to-purple-200/20 dark:from-pink-900/20 dark:to-purple-900/20 rounded-full blur-3xl transform translate-x-1/2" />
       </div>
 
-      <div className="relative border-t-2 border-pink-400 dark:border-pink-600 bg-gradient-to-b from-pink-50 to-white dark:from-gray-900 dark:to-gray-950">
+      <div className="relative border-t-2 border-pink-400 dark:border-pink-600 bg-linear-to-b from-pink-50 to-white dark:from-gray-900 dark:to-gray-950">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Contact Form Section */}
           <ContactFormSection />
@@ -76,7 +76,7 @@ export default function Footer() {
                   />
                 </div>
                 <div>
-                  <span className="text-2xl font-bold bg-gradient-to-r from-rose-400 via-pink-400 to-purple-400 dark:from-rose-300 dark:via-pink-300 dark:to-purple-300 bg-clip-text text-transparent font-playfair">
+                  <span className="text-2xl font-bold bg-linear-to-r from-rose-400 via-pink-400 to-purple-400 dark:from-rose-300 dark:via-pink-300 dark:to-purple-300 bg-clip-text text-transparent font-playfair">
                     Loca Fit
                     <span className="text-xs text-pink-500/70 dark:text-pink-400/70 tracking-[0.2em] uppercase ml-2">
                       Studio

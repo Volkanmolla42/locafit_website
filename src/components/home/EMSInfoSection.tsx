@@ -39,7 +39,7 @@ const EMSInfoSection = () => {
             transition={{ duration: 0.8 }}
             className="relative"
           >
-            <div className="absolute inset-0 bg-gradient-to-r from-pink-100 to-pink-50 dark:from-pink-950/30 dark:to-pink-900/30 rounded-[40px] transform rotate-3"></div>
+            <div className="absolute inset-0 bg-linear-to-r from-pink-100 to-pink-50 dark:from-pink-950/30 dark:to-pink-900/30 rounded-[40px] transform rotate-3"></div>
             <Image
               src="/ems-photo.webp"
               alt="EMS Training"

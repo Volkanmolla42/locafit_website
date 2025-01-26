@@ -96,14 +96,14 @@ export default function Navbar() {
   return (
     <header
       ref={headerRef}
-      className="fixed w-full z-50 transition-all duration-300 bg-pink-50/90 dark:bg-gray-900/90 backdrop-blur-md border-b border-pink-100 dark:border-gray-800 shadow-sm"
+      className="fixed w-full z-50 transition-all duration-300 bg-pink-50/90 dark:bg-gray-900/90 backdrop-blur-md border-b border-pink-100 dark:border-gray-800 shadow-xs"
     >
       <nav ref={navRef} className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 md:h-20 transition-all duration-300">
           {/* Logo */}
           <Link
             href="/"
-            className="flex-shrink-0 relative logo-container group"
+            className="shrink-0 relative logo-container group"
             ref={logoRef}
           >
             <div className="flex items-center space-x-2">
@@ -118,7 +118,7 @@ export default function Navbar() {
                 />
               </div>
               <div className="flex flex-col">
-                <span className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-rose-400 via-pink-400 to-purple-400 dark:from-rose-300 dark:via-pink-300 dark:to-purple-300 bg-clip-text text-transparent font-playfair whitespace-nowrap transition-all duration-300 group-hover:from-rose-500 group-hover:to-purple-500 dark:group-hover:from-rose-400 dark:group-hover:to-purple-400">
+                <span className="text-2xl md:text-3xl font-bold bg-linear-to-r from-rose-400 via-pink-400 to-purple-400 dark:from-rose-300 dark:via-pink-300 dark:to-purple-300 bg-clip-text text-transparent font-playfair whitespace-nowrap transition-all duration-300 group-hover:from-rose-500 group-hover:to-purple-500 dark:group-hover:from-rose-400 dark:group-hover:to-purple-400">
                   Loca Fit
                   <span className="text-xs md:text-sm text-pink-500/70 dark:text-pink-400/70 tracking-[0.2em] md:tracking-[0.3em] uppercase ml-2 transition-colors duration-300 group-hover:text-pink-600 dark:group-hover:text-pink-300">
                     Studio
@@ -144,13 +144,13 @@ export default function Navbar() {
                   }`}
                 >
                   {item.label}
-                  <span className="absolute inset-x-0 bottom-0 h-0.5 bg-gradient-to-r from-rose-300 to-pink-300 dark:from-rose-400 dark:to-pink-400 transform origin-left scale-x-0 transition-transform duration-300 group-hover:scale-x-100" />
+                  <span className="absolute inset-x-0 bottom-0 h-0.5 bg-linear-to-r from-rose-300 to-pink-300 dark:from-rose-400 dark:to-pink-400 transform origin-left scale-x-0 transition-transform duration-300 group-hover:scale-x-100" />
                 </Link>
               </div>
             ))}
             <Link
               href="/randevularim"
-              className="ml-4 px-4 py-2 rounded-lg bg-gradient-to-r from-rose-400 to-pink-400 dark:from-rose-500 dark:to-pink-500 text-white font-medium text-sm transition-all duration-300 hover:from-rose-500 hover:to-pink-500 dark:hover:from-rose-400 dark:hover:to-pink-400 hover:shadow-lg hover:shadow-pink-200 dark:hover:shadow-pink-500/20 transform hover:-translate-y-0.5"
+              className="ml-4 px-4 py-2 rounded-lg bg-linear-to-r from-rose-400 to-pink-400 dark:from-rose-500 dark:to-pink-500 text-white font-medium text-sm transition-all duration-300 hover:from-rose-500 hover:to-pink-500 dark:hover:from-rose-400 dark:hover:to-pink-400 hover:shadow-lg hover:shadow-pink-200 dark:hover:shadow-pink-500/20 transform hover:-translate-y-0.5"
             >
               Randevularım
             </Link>
@@ -200,7 +200,7 @@ export default function Navbar() {
                 ))}
                 <Link
                   href="/randevularim"
-                  className="mt-2 block px-4 py-2 text-base text-center bg-gradient-to-r from-rose-400 to-pink-400 dark:from-rose-500 dark:to-pink-500 text-white rounded-lg hover:from-rose-500 hover:to-pink-500 dark:hover:from-rose-400 dark:hover:to-pink-400 transition-all duration-300"
+                  className="mt-2 block px-4 py-2 text-base text-center bg-linear-to-r from-rose-400 to-pink-400 dark:from-rose-500 dark:to-pink-500 text-white rounded-lg hover:from-rose-500 hover:to-pink-500 dark:hover:from-rose-400 dark:hover:to-pink-400 transition-all duration-300"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   Randevularım

@@ -48,7 +48,7 @@ export default function GalleryPage() {
     : images.filter(img => img.category === selectedCategory);
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-pink-50 to-white dark:from-gray-900 dark:to-gray-800 py-24">
+    <div className="min-h-screen bg-linear-to-b from-pink-50 to-white dark:from-gray-900 dark:to-gray-800 py-24">
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

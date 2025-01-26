@@ -180,7 +180,7 @@ export default function FloatingSupport() {
                         value={newMessage}
                         onChange={(e) => setNewMessage(e.target.value)}
                         placeholder="Mesajınızı yazın..."
-                        className="flex-1 border rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary"
+                        className="flex-1 border rounded-md px-3 py-2 focus:outline-hidden focus:ring-2 focus:ring-primary"
                       />
                       <button
                         type="submit"
@@ -200,7 +200,7 @@ export default function FloatingSupport() {
                         type="text"
                         value={formData.name}
                         onChange={(e) => setFormData(prev => ({ ...prev, name: e.target.value }))}
-                        className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary"
+                        className="mt-1 block w-full rounded-md border-gray-300 shadow-xs focus:border-primary focus:ring-primary"
                       />
                       {formErrors.name && (
                         <p className="mt-1 text-sm text-red-600">{formErrors.name}</p>
@@ -215,7 +215,7 @@ export default function FloatingSupport() {
                         type="tel"
                         value={formData.phone}
                         onChange={(e) => setFormData(prev => ({ ...prev, phone: formatPhoneNumber(e.target.value) }))}
-                        className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary"
+                        className="mt-1 block w-full rounded-md border-gray-300 shadow-xs focus:border-primary focus:ring-primary"
                       />
                       {formErrors.phone && (
                         <p className="mt-1 text-sm text-red-600">{formErrors.phone}</p>
@@ -230,7 +230,7 @@ export default function FloatingSupport() {
                         value={formData.message}
                         onChange={(e) => setFormData(prev => ({ ...prev, message: e.target.value }))}
                         rows={4}
-                        className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary"
+                        className="mt-1 block w-full rounded-md border-gray-300 shadow-xs focus:border-primary focus:ring-primary"
                       />
                       {formErrors.message && (
                         <p className="mt-1 text-sm text-red-600">{formErrors.message}</p>

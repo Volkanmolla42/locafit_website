@@ -156,7 +156,7 @@ export default function RandevuPage() {
   }
 
   return (
-    <main className="min-h-screen pt-24 pb-12 bg-gradient-to-b from-white to-gray-50 dark:from-gray-900 dark:to-gray-800">
+    <main className="min-h-screen pt-24 pb-12 bg-linear-to-b from-white to-gray-50 dark:from-gray-900 dark:to-gray-800">
       <div className="max-w-4xl mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

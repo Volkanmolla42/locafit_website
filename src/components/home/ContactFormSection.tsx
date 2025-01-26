@@ -125,7 +125,7 @@ export default function ContactFormSection() {
       </p>
       <div className="grid gap-8">
         {/* md:grid-cols-2  */}
-        <div className="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700">
+        <div className="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-xs border border-gray-100 dark:border-gray-700">
           <form onSubmit={handleSubmit} className="space-y-6">
             <div>
               <label htmlFor="name" className="flex items-center gap-2 text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">

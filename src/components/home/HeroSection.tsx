@@ -103,7 +103,7 @@ const HeroSection = () => {
   return (
     <section
       ref={sectionRef}
-      className="relative min-h-screen flex py-16 overflow-hidden bg-gradient-to-br from-pink-50 to-pink-100 dark:from-gray-900 dark:to-gray-800"
+      className="relative min-h-screen flex py-16 overflow-hidden bg-linear-to-br from-pink-50 to-pink-100 dark:from-gray-900 dark:to-gray-800"
     >
       {/* Dekoratif arka plan elementleri */}
       <div className="absolute inset-0 overflow-hidden">
@@ -127,7 +127,7 @@ const HeroSection = () => {
 
           <h1
             ref={titleRef}
-            className="text-6xl md:text-8xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-pink-300 dark:from-pink-400 dark:to-pink-300 mb-6 leading-tight tracking-tighter"
+            className="text-6xl md:text-8xl font-extrabold text-transparent bg-clip-text bg-linear-to-r from-pink-500 to-pink-300 dark:from-pink-400 dark:to-pink-300 mb-6 leading-tight tracking-tighter"
           >
             Loca Fit Studio
           </h1>

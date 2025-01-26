@@ -63,7 +63,7 @@ const ServicesSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
               whileHover={{ y: -5, transition: { duration: 0.2 } }}
-              className={`${service.color} rounded-3xl p-6 shadow-sm hover:shadow-md transition-all duration-300 dark:shadow-gray-950`}
+              className={`${service.color} rounded-3xl p-6 shadow-xs hover:shadow-md transition-all duration-300 dark:shadow-gray-950`}
             >
               <div className="w-16 h-16 mb-6 mx-auto text-pink-600 dark:text-pink-400">
                 <service.Icon className="w-full h-full" />

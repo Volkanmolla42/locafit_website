@@ -55,7 +55,7 @@ export default function ServicesPage() {
   }, [])
 
   return (
-    <main className="min-h-screen pt-24 pb-12 px-4 bg-gradient-to-b from-white to-gray-50 dark:from-gray-900 dark:to-gray-800">
+    <main className="min-h-screen pt-24 pb-12 px-4 bg-linear-to-b from-white to-gray-50 dark:from-gray-900 dark:to-gray-800">
       <div className="max-w-6xl mx-auto">
         <motion.div
           initial="hidden"
@@ -133,7 +133,7 @@ export default function ServicesPage() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5 }}
-          className="mt-16 bg-gradient-to-r from-primary/5 to-primary/10 dark:from-pink-900/20 dark:to-pink-800/20 p-8 rounded-2xl"
+          className="mt-16 bg-linear-to-r from-primary/5 to-primary/10 dark:from-pink-900/20 dark:to-pink-800/20 p-8 rounded-2xl"
         >
           <div className="flex flex-col md:flex-row items-center gap-8">
             <div className="flex-1">
@@ -148,28 +148,28 @@ export default function ServicesPage() {
               <div className="grid grid-cols-2 gap-4">
                 <motion.div
                   whileHover={{ scale: 1.05 }}
-                  className="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-sm dark:shadow-gray-900/50"
+                  className="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-xs dark:shadow-gray-900/50"
                 >
                   <h3 className="font-semibold text-primary dark:text-pink-400 mb-2">Hızlı Sonuç</h3>
                   <p className="text-sm text-gray-600 dark:text-gray-400">20 dakikada maksimum verim</p>
                 </motion.div>
                 <motion.div
                   whileHover={{ scale: 1.05 }}
-                  className="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-sm dark:shadow-gray-900/50"
+                  className="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-xs dark:shadow-gray-900/50"
                 >
                   <h3 className="font-semibold text-primary dark:text-pink-400 mb-2">Eklem Dostu</h3>
                   <p className="text-sm text-gray-600 dark:text-gray-400">Minimum eklem yükü</p>
                 </motion.div>
                 <motion.div
                   whileHover={{ scale: 1.05 }}
-                  className="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-sm dark:shadow-gray-900/50"
+                  className="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-xs dark:shadow-gray-900/50"
                 >
                   <h3 className="font-semibold text-primary dark:text-pink-400 mb-2">Kişiye Özel</h3>
                   <p className="text-sm text-gray-600 dark:text-gray-400">Size özel program</p>
                 </motion.div>
                 <motion.div
                   whileHover={{ scale: 1.05 }}
-                  className="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-sm dark:shadow-gray-900/50"
+                  className="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-xs dark:shadow-gray-900/50"
                 >
                   <h3 className="font-semibold text-primary dark:text-pink-400 mb-2">Profesyonel</h3>
                   <p className="text-sm text-gray-600 dark:text-gray-400">Uzman eğitmenler</p>
