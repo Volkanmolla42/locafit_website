@@ -7,6 +7,7 @@ import Loading from "./loading";
 import { ThemeProvider } from '@/components/theme-provider';
 import { ThemeToggle } from '@/components/theme-toggle';
 import { NavigationEvents } from "@/components/common/NavigationEvents";
+import { Analytics } from "@vercel/analytics/react"
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const playfair = Playfair_Display({
@@ -42,6 +43,7 @@ export default function RootLayout({
             <ThemeToggle />
           </div>
         </ThemeProvider>
+        <Analytics />
       </body>
     </html>
   );

@@ -103,13 +103,13 @@ const HeroSection = () => {
   return (
     <section
       ref={sectionRef}
-      className="relative min-h-screen flex py-16 overflow-hidden bg-linear-to-br from-pink-50 to-pink-100 dark:from-gray-900 dark:to-gray-800"
+      className="relative  min-h-screen flex py-16 overflow-hidden bg-linear-to-br from-pink-50 to-pink-100 dark:from-gray-900 dark:to-gray-800"
     >
       {/* Dekoratif arka plan elementleri */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute -top-20 -right-20 w-96 h-96 bg-pink-200/70 dark:bg-pink-500/20 rounded-full mix-blend-multiply dark:mix-blend-soft-light filter blur-xl opacity-70 animate-blob"></div>
-        <div className="absolute -bottom-20 -left-20 w-96 h-96 bg-pink-300/70 dark:bg-pink-600/20 rounded-full mix-blend-multiply dark:mix-blend-soft-light filter blur-xl opacity-70 animate-blob animation-delay-2000"></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-pink-200/50 dark:bg-pink-500/10 rounded-full mix-blend-multiply dark:mix-blend-soft-light filter blur-xl opacity-70 animate-blob animation-delay-4000"></div>
+      <div className="absolute parallax-bg inset-0 overflow-hidden">
+        <div className="absolute parallax-bg -top-20 -right-20 w-96 h-96 bg-pink-200/70 dark:bg-pink-500/20 rounded-full mix-blend-multiply dark:mix-blend-soft-light filter blur-xl opacity-70 animate-blob"></div>
+        <div className="absolute parallax-bg -bottom-20 -left-20 w-96 h-96 bg-pink-300/70 dark:bg-pink-600/20 rounded-full mix-blend-multiply dark:mix-blend-soft-light filter blur-xl opacity-70 animate-blob animation-delay-2000"></div>
+        <div className="absolute parallax-bg top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-pink-200/50 dark:bg-pink-500/10 rounded-full mix-blend-multiply dark:mix-blend-soft-light filter blur-xl opacity-70 animate-blob animation-delay-4000"></div>
       </div>
 
       {/* Ana içerik */}

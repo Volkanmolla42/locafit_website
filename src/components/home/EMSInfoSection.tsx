@@ -1,30 +1,31 @@
-'use client'
+"use client";
 
-import { motion } from 'framer-motion';
-import Image from 'next/image';
-import { Button } from '@/components/ui/button';
+import { motion } from "framer-motion";
+import Image from "next/image";
+import { Button } from "@/components/ui/button";
 
 const features = [
   {
-    title: 'Zaman Tasarrufu',
-    description: '20 dakikalık EMS antrenmanı, 2 saatlik klasik antrenmana eşdeğerdir',
-    icon: '⏱️'
+    title: "Zaman Tasarrufu",
+    description:
+      "20 dakikalık EMS antrenmanı, 2 saatlik klasik antrenmana eşdeğerdir",
+    icon: "⏱️",
   },
   {
-    title: 'Kişiye Özel',
-    description: 'Her vücut tipine ve hedefe uygun özelleştirilmiş antrenman',
-    icon: '🎯'
+    title: "Kişiye Özel",
+    description: "Her vücut tipine ve hedefe uygun özelleştirilmiş antrenman",
+    icon: "🎯",
   },
   {
-    title: 'Güvenli',
-    description: 'Eklemlerinize zarar vermeden etkili kas çalışması',
-    icon: '🛡️'
+    title: "Güvenli",
+    description: "Eklemlerinize zarar vermeden etkili kas çalışması",
+    icon: "🛡️",
   },
   {
-    title: 'Bilimsel',
-    description: 'Kanıtlanmış sonuçlarla desteklenen modern teknoloji',
-    icon: '🔬'
-  }
+    title: "Bilimsel",
+    description: "Kanıtlanmış sonuçlarla desteklenen modern teknoloji",
+    icon: "🔬",
+  },
 ];
 
 const EMSInfoSection = () => {
@@ -36,8 +37,9 @@ const EMSInfoSection = () => {
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-            className="relative"
+            transition={{ duration: 0.8}}
+            viewport={{ once: true }}
+            className="relative ems-image"
           >
             <div className="absolute inset-0 bg-linear-to-r from-pink-100 to-pink-50 dark:from-pink-950/30 dark:to-pink-900/30 rounded-[40px] transform rotate-3"></div>
             <Image
@@ -51,22 +53,32 @@ const EMSInfoSection = () => {
           </motion.div>
 
           {/* Sağ taraf - İçerik */}
-          <div className="space-y-8">
+          <div className="space-y-8 ems-content">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+
             >
               <h2 className="text-4xl font-bold text-gray-800 dark:text-gray-100 mb-4">
-               <span title="Electric Muscle Stimulation" className='text-pink-500 dark:text-pink-400 border-b-2 border-pink-500 dark:border-pink-400 mr-2 cursor-help'>
-                EMS
-                </span> 
-                 Teknolojisi ile Tanışın
+                <span
+                  title="Electric Muscle Stimulation"
+                  className="text-pink-500 dark:text-pink-400 border-b-2 border-pink-500 dark:border-pink-400 mr-2 cursor-help"
+                >
+                  EMS
+                </span>
+                Teknolojisi ile Tanışın
               </h2>
               <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
-              <span title="Elektrikli Kas Uyarılması" className='cursor-help border-b-2 border-pink-500 dark:border-pink-400 mr-2 font-bold dark:text-gray-300'>Electric Muscle Stimulation </span>
-               teknolojisi, kaslarınızı doğal kasılma prensibine uygun olarak çalıştırır. 
-                Bu sayede kısa sürede maksimum verim alırsınız.
+                <span
+                  title="Elektrikli Kas Uyarılması"
+                  className="cursor-help border-b-2 border-pink-500 dark:border-pink-400 mr-2 font-bold dark:text-gray-300"
+                >
+                  Electric Muscle Stimulation{" "}
+                </span>
+                teknolojisi, kaslarınızı doğal kasılma prensibine uygun olarak
+                çalıştırır. Bu sayede kısa sürede maksimum verim alırsınız.
               </p>
             </motion.div>
 
@@ -77,6 +89,8 @@ const EMSInfoSection = () => {
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
+                  viewport={{ once: true }}
+
                   className="space-y-3"
                 >
                   <div className="text-3xl">{feature.icon}</div>
@@ -94,10 +108,10 @@ const EMSInfoSection = () => {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
+              viewport={{ once: true }}
+
             >
-              <Button 
-                className="bg-pink-500 hover:bg-pink-600 dark:bg-pink-600 dark:hover:bg-pink-500 text-white px-8 py-6 rounded-full text-lg font-semibold transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl dark:shadow-pink-950/30"
-              >
+              <Button className="bg-pink-500 hover:bg-pink-600 dark:bg-pink-600 dark:hover:bg-pink-500 text-white px-8 py-6 rounded-full text-lg font-semibold transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl dark:shadow-pink-950/30">
                 Ücretsiz Deneme Seansı
               </Button>
             </motion.div>

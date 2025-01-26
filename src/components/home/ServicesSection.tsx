@@ -41,6 +41,8 @@ const ServicesSection = () => {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+
             className="text-4xl font-bold text-gray-800 dark:text-gray-100 mb-4"
           >
             Hizmetlerimiz
@@ -49,6 +51,8 @@ const ServicesSection = () => {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
+            viewport={{ once: true }}
+
             className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto"
           >
             Size özel tasarlanmış programlarla sağlıklı ve fit bir yaşama adım atın
@@ -62,6 +66,8 @@ const ServicesSection = () => {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
+              viewport={{ once: true }}
+
               whileHover={{ y: -5, transition: { duration: 0.2 } }}
               className={`${service.color} rounded-3xl p-6 shadow-xs hover:shadow-md transition-all duration-300 dark:shadow-gray-950`}
             >

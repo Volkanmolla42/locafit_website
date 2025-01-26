@@ -51,6 +51,8 @@ const FeaturesSection = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             className="text-4xl font-bold text-gray-800 dark:text-gray-100 mb-4"
+            viewport={{ once: true }}
+
           >
             Neden Bizi Seçmelisiniz?
           </motion.h2>
@@ -59,6 +61,8 @@ const FeaturesSection = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto"
+            viewport={{ once: true }}
+
           >
             Size özel hazırlanmış programlar ve profesyonel ekibimizle hedeflerinize ulaşmanıza yardımcı oluyoruz
           </motion.p>
@@ -71,6 +75,8 @@ const FeaturesSection = () => {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
+              viewport={{ once: true }}
+
               className={`${feature.color} rounded-3xl p-8 hover:shadow-lg dark:hover:shadow-pink-950/20 transition-all duration-300 group backdrop-blur-xs`}
             >
               <div className="mb-6">
