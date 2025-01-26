@@ -5,7 +5,6 @@ import "./globals.css";
 import { Suspense } from "react";
 import Loading from "./loading";
 import { ThemeProvider } from '@/components/theme-provider';
-import { ThemeToggle } from '@/components/theme-toggle';
 import { NavigationEvents } from "@/components/common/NavigationEvents";
 import { Analytics } from "@vercel/analytics/react"
 
@@ -40,7 +39,6 @@ export default function RootLayout({
           </main>
           <Footer />
           <div className="fixed bottom-4 right-4 z-50">
-            <ThemeToggle />
           </div>
         </ThemeProvider>
         <Analytics />

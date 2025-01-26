@@ -39,7 +39,7 @@ const EMSInfoSection = () => {
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8}}
             viewport={{ once: true }}
-            className="relative ems-image"
+            className="relative"
           >
             <div className="absolute inset-0 bg-linear-to-r from-pink-100 to-pink-50 dark:from-pink-950/30 dark:to-pink-900/30 rounded-[40px] transform rotate-3"></div>
             <Image
@@ -53,7 +53,7 @@ const EMSInfoSection = () => {
           </motion.div>
 
           {/* Sağ taraf - İçerik */}
-          <div className="space-y-8 ems-content">
+          <div className="space-y-8">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
