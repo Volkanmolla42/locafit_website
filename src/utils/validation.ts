@@ -1,19 +1,20 @@
 export const validateEmail = (email: string): boolean => {
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+  const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
   return emailRegex.test(email)
 }
 
-export const validatePhone = (phone: string): boolean => {
-  const phoneRegex = /^(\+90|0)?[0-9]{10}$/
-  return phoneRegex.test(phone.replace(/\s/g, ''))
-}
-
 export const validateName = (name: string): boolean => {
-  return name.trim().length >= 2
+  return name.trim().length >= 2 && /^[a-zA-ZğüşıöçĞÜŞİÖÇ\s]+$/.test(name)
+}
+export const validatePhone = (phone: string): boolean => {
+  // Sadece rakamları al
+  const cleaned = phone.replace(/\D/g, '')
+
+  return /^\+?\d{7,15}$/.test(cleaned)
 }
 
 export const validateMessage = (message: string): boolean => {
-  return message.trim().length >= 10
+  return message.trim().length >= 10 && message.trim().length <= 500
 }
 
 export interface ValidationError {
@@ -22,49 +23,66 @@ export interface ValidationError {
 }
 
 export const validateForm = (data: {
-  name?: string
+  name: string
+  phone: string
+  message: string
   email?: string
-  phone?: string
-  message?: string
 }): ValidationError[] => {
   const errors: ValidationError[] = []
 
-  if (data.name && !validateName(data.name)) {
-    errors.push({
-      field: 'name',
-      message: 'İsim en az 2 karakter olmalıdır'
+  // Name validation
+  if (!data.name.trim()) {
+    errors.push({ field: 'name', message: 'Adınızı giriniz' })
+  } else if (!validateName(data.name)) {
+    errors.push({ 
+      field: 'name', 
+      message: 'Geçerli bir isim giriniz (en az 2 karakter)'
     })
   }
 
-  if (data.email && !validateEmail(data.email)) {
-    errors.push({
-      field: 'email',
-      message: 'Geçerli bir email adresi giriniz'
-    })
-  }
-
-  if (data.phone && !validatePhone(data.phone)) {
-    errors.push({
-      field: 'phone',
+  // Phone validation
+  if (!data.phone.trim()) {
+    errors.push({ field: 'phone', message: 'Telefon numarası giriniz' })
+  } else if (!validatePhone(data.phone)) {
+    errors.push({ 
+      field: 'phone', 
       message: 'Geçerli bir telefon numarası giriniz'
     })
   }
 
-  if (data.message && !validateMessage(data.message)) {
-    errors.push({
-      field: 'message',
-      message: 'Mesaj en az 10 karakter olmalıdır'
+  // Message validation
+  if (!data.message.trim()) {
+    errors.push({ field: 'message', message: 'Mesajınızı giriniz' })
+  } else if (!validateMessage(data.message)) {
+    errors.push({ 
+      field: 'message', 
+      message: 'Mesaj 10-500 karakter arasında olmalıdır'
+    })
+  }
+
+  // Optional email validation
+  if (data.email && !validateEmail(data.email)) {
+    errors.push({ 
+      field: 'email', 
+      message: 'Geçerli bir e-posta adresi giriniz'
     })
   }
 
   return errors
 }
-
 export const formatPhoneNumber = (phone: string): string => {
+  // Sadece rakamları al
   const cleaned = phone.replace(/\D/g, '')
-  const match = cleaned.match(/^(\d{3})(\d{3})(\d{4})$/)
-  if (match) {
-    return '0 ' + match[1] + ' ' + match[2] + ' ' + match[3]
-  }
-  return phone
+
+  // 11 haneyi geçemez
+  const limited = cleaned.slice(0, 11)
+
+  // Formatlama mantığı
+  const parts = []
+  if (limited.length > 0) parts.push('(' + limited.slice(0, 3))
+  if (limited.length > 3) parts.push(') ' + limited.slice(3, 6))
+  if (limited.length > 6) parts.push(' ' + limited.slice(6, 8))
+  if (limited.length > 8) parts.push(' ' + limited.slice(8, 10))
+
+  return parts.join('')
 }

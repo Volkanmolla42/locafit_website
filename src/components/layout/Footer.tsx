@@ -198,27 +198,24 @@ export default function Footer() {
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            className="py-6 border-t border-gray-100 dark:border-gray-800 mt-12"
+            className="py-6 border-t border-gray-100 dark:border-gray-800 mt-8"
           >
-            <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-gray-500 dark:text-gray-400">
+            <div className="flex flex-col md:flex-row items-center justify-between gap-2 pr-6 text-sm text-gray-500 dark:text-gray-400">
               <div>
                 &copy; {new Date().getFullYear()} {footerContent.copyright}
               </div>
               
               <div className="flex items-center gap-4">
-                <Link
+                <ThemeToggle/>
+              </div>
+              <Link
                   href={footerContent.designerLink}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-xs font-serif italic hover:text-pink-500 dark:hover:text-pink-400 transition-colors"
+                  className="text-xs font-serif mt-4 sm:mt-0 italic hover:text-pink-500 dark:hover:text-pink-400 transition-colors"
                 >
                   {footerContent.designerLabel}
                 </Link>
-                
-                <ThemeToggle 
-                  
-                />
-              </div>
             </div>
           </motion.div>
         </div>

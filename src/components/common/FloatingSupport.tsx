@@ -1,85 +1,76 @@
-'use client'
+"use client";
 
-import { useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
-import { validateForm, formatPhoneNumber } from '@/utils/validation'
+import { useState, useEffect, useCallback, useRef } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { validateForm, formatPhoneNumber } from "@/utils/validation";
 
-interface Message {
-  text: string
-  sender: 'user' | 'support'
-  timestamp: Date
-}
+const WHATSAPP_NUMBER = "905418849944"; // Configurable number
 
 export default function FloatingSupport() {
-  const [isOpen, setIsOpen] = useState(false)
-  const [activeTab, setActiveTab] = useState<'chat' | 'form'>('chat')
-  const [messages, setMessages] = useState<Message[]>([
-    {
-      text: 'Merhaba! Size nasıl yardımcı olabilirim?',
-      sender: 'support',
-      timestamp: new Date()
-    }
-  ])
-  const [newMessage, setNewMessage] = useState('')
+  const [isOpen, setIsOpen] = useState(false);
   const [formData, setFormData] = useState({
-    name: '',
-    phone: '',
-    message: ''
-  })
-  const [formErrors, setFormErrors] = useState<{[key: string]: string}>({})
+    name: "",
+    phone: "",
+    message: "",
+  });
+  const [formErrors, setFormErrors] = useState<{ [key: string]: string }>({});
 
-  const handleWhatsApp = () => {
-    const phone = '905418849944' // WhatsApp numarası
-    const text = 'Merhaba, bilgi almak istiyorum.'
-    window.open(`https://wa.me/${phone}?text=${encodeURIComponent(text)}`, '_blank')
-  }
+  const inputRef = useRef<HTMLInputElement>(null);
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    const errors = validateForm(formData)
-    
-    if (errors.length > 0) {
-      const errorMap = errors.reduce((acc, error) => ({
-        ...acc,
-        [error.field]: error.message
-      }), {})
-      setFormErrors(errorMap)
-      return
+  useEffect(() => {
+    if (isOpen && inputRef.current) {
+      inputRef.current.focus();
     }
+  }, [isOpen]);
 
-    // Form gönderimi başarılı
-    handleWhatsApp()
-    setFormData({ name: '', phone: '', message: '' })
-    setFormErrors({})
-  }
+  const handleWhatsApp = useCallback((text?: string) => {
+    const message = text || "Merhaba, bilgi almak istiyorum.";
+    window.open(
+      `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`,
+      "_blank",
+      "noopener,noreferrer"
+    );
+  }, []);
 
-  const handleSendMessage = (e: React.FormEvent) => {
-    e.preventDefault()
-    if (!newMessage.trim()) return
+  const handleSubmit = useCallback(
+    (e: React.FormEvent) => {
+      e.preventDefault();
+      const errors = validateForm(formData);
 
-    const userMessage: Message = {
-      text: newMessage,
-      sender: 'user',
-      timestamp: new Date()
-    }
-
-    setMessages(prev => [...prev, userMessage])
-    setNewMessage('')
-
-    // Otomatik cevap
-    setTimeout(() => {
-      const autoReply: Message = {
-        text: 'Teşekkürler! En kısa sürede size dönüş yapacağız. Hızlı yanıt için WhatsApp\'tan da ulaşabilirsiniz.',
-        sender: 'support',
-        timestamp: new Date()
+      if (errors.length > 0) {
+        const errorMap = errors.reduce(
+          (acc, error) => ({
+            ...acc,
+            [error.field]: error.message,
+          }),
+          {}
+        );
+        setFormErrors(errorMap);
+        return;
       }
-      setMessages(prev => [...prev, autoReply])
-    }, 1000)
-  }
+
+      const whatsappMessage = `Ad: ${formData.name}\nTelefon: ${formData.phone}\nMesaj: ${formData.message}`;
+      handleWhatsApp(whatsappMessage);
+      setFormData({ name: "", phone: "", message: "" });
+      setFormErrors({});
+    },
+    [formData, handleWhatsApp]
+  );
+
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, [isOpen]);
 
   return (
     <>
-      {/* Floating Button */}
       <motion.div
         className="fixed bottom-4 right-4 z-50"
         initial={{ scale: 0 }}
@@ -88,7 +79,8 @@ export default function FloatingSupport() {
       >
         <button
           onClick={() => setIsOpen(true)}
-          className="bg-primary text-white rounded-full p-4 shadow-lg hover:bg-primary-dark transition-colors"
+          className="bg-primary text-white rounded-full p-4 shadow-lg hover:bg-primary-dark transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 dark:bg-primary-600 dark:hover:bg-primary-700"
+          aria-label="Destek penceresini aç"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -107,7 +99,6 @@ export default function FloatingSupport() {
         </button>
       </motion.div>
 
-      {/* Support Modal */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
@@ -116,140 +107,149 @@ export default function FloatingSupport() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
           >
-            <div className="absolute inset-0 bg-black bg-opacity-50" onClick={() => setIsOpen(false)} />
-            
+            <div
+              className="absolute inset-0 bg-black bg-opacity-50 dark:bg-opacity-70"
+              onClick={() => setIsOpen(false)}
+              role="button"
+              aria-label="Pencereyi kapat"
+              tabIndex={0}
+            />
+
             <motion.div
-              className="bg-white rounded-lg shadow-xl w-full max-w-md relative"
+              className="bg-white dark:bg-gray-800 rounded-lg shadow-xl w-full max-w-md relative flex flex-col h-[90vh] max-h-[600px]"
               initial={{ scale: 0.9, y: 20 }}
               animate={{ scale: 1, y: 0 }}
               exit={{ scale: 0.9, y: 20 }}
+              role="dialog"
+              aria-labelledby="support-modal-title"
             >
-              {/* Header */}
-              <div className="p-4 border-b flex justify-between items-center">
-                <div className="flex gap-4">
-                  <button
-                    className={`px-4 py-2 rounded-md transition-colors ${
-                      activeTab === 'chat' ? 'bg-primary text-white' : 'hover:bg-gray-100'
-                    }`}
-                    onClick={() => setActiveTab('chat')}
-                  >
-                    Canlı Destek
-                  </button>
-                  <button
-                    className={`px-4 py-2 rounded-md transition-colors ${
-                      activeTab === 'form' ? 'bg-primary text-white' : 'hover:bg-gray-100'
-                    }`}
-                    onClick={() => setActiveTab('form')}
-                  >
-                    WhatsApp
-                  </button>
-                </div>
+              <div className="p-4 border-b flex justify-between items-center bg-gray-50 dark:bg-gray-700 rounded-t-lg">
+                <h2
+                  id="support-modal-title"
+                  className="text-lg font-semibold text-gray-800 dark:text-white"
+                >
+                  WhatsApp Destek
+                </h2>
                 <button
                   onClick={() => setIsOpen(false)}
-                  className="text-gray-500 hover:text-gray-700"
+                  className="text-gray-500 hover:text-gray-700 dark:text-gray-300 dark:hover:text-gray-100 p-1 rounded-full hover:bg-gray-100 dark:hover:bg-gray-600"
+                  aria-label="Pencereyi kapat"
                 >
                   ×
                 </button>
               </div>
 
-              {/* Content */}
-              <div className="p-4">
-                {activeTab === 'chat' ? (
-                  <div className="space-y-4">
-                    <div className="h-80 overflow-y-auto space-y-4">
-                      {messages.map((message, index) => (
-                        <div
-                          key={index}
-                          className={`flex ${message.sender === 'user' ? 'justify-end' : 'justify-start'}`}
-                        >
-                          <div
-                            className={`max-w-[80%] rounded-lg p-3 ${
-                              message.sender === 'user'
-                                ? 'bg-primary text-white'
-                                : 'bg-gray-100 text-gray-800'
-                            }`}
-                          >
-                            {message.text}
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                    <form onSubmit={handleSendMessage} className="flex gap-2">
-                      <input
-                        type="text"
-                        value={newMessage}
-                        onChange={(e) => setNewMessage(e.target.value)}
-                        placeholder="Mesajınızı yazın..."
-                        className="flex-1 border rounded-md px-3 py-2 focus:outline-hidden focus:ring-2 focus:ring-primary"
-                      />
-                      <button
-                        type="submit"
-                        className="bg-primary text-white px-4 py-2 rounded-md hover:bg-primary-dark transition-colors"
-                      >
-                        Gönder
-                      </button>
-                    </form>
-                  </div>
-                ) : (
-                  <form onSubmit={handleSubmit} className="space-y-4">
+              <div className="flex-1 overflow-hidden p-4 flex flex-col">
+                <form
+                  onSubmit={handleSubmit}
+                  className="space-y-4 flex-1 flex flex-col"
+                >
+                  <div className="flex-1 space-y-4">
                     <div>
-                      <label className="block text-sm font-medium text-gray-700">
+                      <label
+                        htmlFor="name"
+                        className="block text-sm font-medium text-gray-700 dark:text-gray-200"
+                      >
                         Adınız
                       </label>
                       <input
+                        id="name"
                         type="text"
                         value={formData.name}
-                        onChange={(e) => setFormData(prev => ({ ...prev, name: e.target.value }))}
-                        className="mt-1 block w-full rounded-md border-gray-300 shadow-xs focus:border-primary focus:ring-primary"
+                        onChange={(e) =>
+                          setFormData((prev) => ({
+                            ...prev,
+                            name: e.target.value,
+                          }))
+                        }
+                        className="mt-1 block w-full rounded-md border-gray-300 shadow-xs focus:ring-primary focus:border-primary dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-primary-500 p-2"
+                        aria-invalid={!!formErrors.name}
+                        aria-describedby="name-error"
                       />
                       {formErrors.name && (
-                        <p className="mt-1 text-sm text-red-600">{formErrors.name}</p>
+                        <p
+                          id="name-error"
+                          className="mt-1 text-sm text-red-600 dark:text-red-400"
+                        >
+                          {formErrors.name}
+                        </p>
                       )}
                     </div>
 
                     <div>
-                      <label className="block text-sm font-medium text-gray-700">
+                      <label
+                        htmlFor="phone"
+                        className="block text-sm font-medium text-gray-700 dark:text-gray-200"
+                      >
                         Telefon
                       </label>
                       <input
+                        id="phone"
                         type="tel"
                         value={formData.phone}
-                        onChange={(e) => setFormData(prev => ({ ...prev, phone: formatPhoneNumber(e.target.value) }))}
-                        className="mt-1 block w-full rounded-md border-gray-300 shadow-xs focus:border-primary focus:ring-primary"
+                        onChange={(e) =>
+                          setFormData((prev) => ({
+                            ...prev,
+                            phone: formatPhoneNumber(e.target.value),
+                          }))
+                        }
+                        className="mt-1 block w-full rounded-md border-gray-300 shadow-xs focus:ring-primary focus:border-primary dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-primary-500 p-2"
+                        aria-invalid={!!formErrors.phone}
+                        aria-describedby="phone-error"
                       />
                       {formErrors.phone && (
-                        <p className="mt-1 text-sm text-red-600">{formErrors.phone}</p>
+                        <p
+                          id="phone-error"
+                          className="mt-1 text-sm text-red-600 dark:text-red-400"
+                        >
+                          {formErrors.phone}
+                        </p>
                       )}
                     </div>
 
                     <div>
-                      <label className="block text-sm font-medium text-gray-700">
+                      <label
+                        htmlFor="message"
+                        className="block text-sm font-medium text-gray-700 dark:text-gray-200"
+                      >
                         Mesajınız
                       </label>
                       <textarea
+                        id="message"
                         value={formData.message}
-                        onChange={(e) => setFormData(prev => ({ ...prev, message: e.target.value }))}
+                        onChange={(e) =>
+                          setFormData((prev) => ({
+                            ...prev,
+                            message: e.target.value,
+                          }))
+                        }
                         rows={4}
-                        className="mt-1 block w-full rounded-md border-gray-300 shadow-xs focus:border-primary focus:ring-primary"
+                        className="mt-1 block w-full rounded-md border-gray-300 shadow-xs focus:ring-primary focus:border-primary dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-primary-500"
+                        aria-invalid={!!formErrors.message}
+                        aria-describedby="message-error"
                       />
                       {formErrors.message && (
-                        <p className="mt-1 text-sm text-red-600">{formErrors.message}</p>
+                        <p
+                          id="message-error"
+                          className="mt-1 text-sm text-red-600 dark:text-red-400"
+                        >
+                          {formErrors.message}
+                        </p>
                       )}
                     </div>
-
-                    <button
-                      type="submit"
-                      className="w-full bg-primary text-white px-4 py-2 rounded-md hover:bg-primary-dark transition-colors"
-                    >
-                      WhatsApp&apos;tan Devam Et
-                    </button>
-                  </form>
-                )}
+                  </div>
+                  <button
+                    type="submit"
+                    className="w-full bg-primary text-white px-4 py-2 rounded-md hover:bg-primary-dark transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 dark:bg-primary-600 dark:hover:bg-primary-700"
+                  >
+                    WhatsApp tan Devam Et
+                  </button>
+                </form>
               </div>
             </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
     </>
-  )
+  );
 }
