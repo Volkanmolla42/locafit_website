@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Link from "next/link";
@@ -20,29 +20,43 @@ const navItems = [
 export default function Navbar() {
   const pathname = usePathname();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [theme, setTheme] = useState<'light' | 'dark'>('light');
+  const [theme, setTheme] = useState<"light" | "dark">("light");
   const headerRef = useRef(null);
   const navRef = useRef(null);
   const logoRef = useRef(null);
+  const mobileMenuRef = useRef<HTMLDivElement>(null);
+  const handleClickOutside = useCallback((event: MouseEvent) => {
+    if (
+      mobileMenuRef.current &&
+      !mobileMenuRef.current.contains(event.target as Node)
+    ) {
+      setIsMobileMenuOpen(false);
+    }
+  }, []);
+  useEffect(() => {
+    // Tıklama olaylarını dinle
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, [handleClickOutside]);
 
   useEffect(() => {
     // Theme'i kontrol et
-    const isDark = document.documentElement.classList.contains('dark');
-    setTheme(isDark ? 'dark' : 'light');
+    const isDark = document.documentElement.classList.contains("dark");
+    setTheme(isDark ? "dark" : "light");
 
     // Theme değişikliklerini dinle
     const observer = new MutationObserver((mutations) => {
       mutations.forEach((mutation) => {
-        if (mutation.attributeName === 'class') {
-          const isDark = document.documentElement.classList.contains('dark');
-          setTheme(isDark ? 'dark' : 'light');
+        if (mutation.attributeName === "class") {
+          const isDark = document.documentElement.classList.contains("dark");
+          setTheme(isDark ? "dark" : "light");
         }
       });
     });
 
     observer.observe(document.documentElement, {
       attributes: true,
-      attributeFilter: ['class'],
+      attributeFilter: ["class"],
     });
 
     return () => observer.disconnect();
@@ -57,7 +71,10 @@ export default function Navbar() {
           end: "+=100",
           scrub: true,
         },
-        backgroundColor: theme === 'dark' ? "rgba(17, 24, 39, 0.8)" : "rgba(255, 255, 255, 0.8)",
+        backgroundColor:
+          theme === "dark"
+            ? "rgba(17, 24, 39, 0.8)"
+            : "rgba(255, 255, 255, 0.8)",
         height: "64px", // Smaller height when scrolled
         ease: "power2.out",
       });
@@ -96,7 +113,7 @@ export default function Navbar() {
   return (
     <header
       ref={headerRef}
-      className="fixed w-full z-50 transition-all duration-300 bg-pink-50/90 dark:bg-gray-900/90 backdrop-blur-md border-b border-pink-100 dark:border-gray-800 shadow-xs"
+      className="fixed w-full z-50 bg-pink-50/90 dark:bg-gray-900/90 backdrop-blur-md border-b border-pink-100 dark:border-gray-800 shadow-xs"
     >
       <nav ref={navRef} className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 md:h-20 transition-all duration-300">
@@ -131,10 +148,7 @@ export default function Navbar() {
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-2">
             {navItems.map((item) => (
-              <div
-                key={item.href}
-                className="nav-item px-1"
-              >
+              <div key={item.href} className="nav-item px-1">
                 <Link
                   href={item.href}
                   className={`relative px-3 py-2 rounded-lg text-sm font-medium transition-all duration-300 hover:text-pink-600 dark:hover:text-pink-300 group ${
@@ -163,12 +177,32 @@ export default function Navbar() {
           >
             <span className="sr-only">Open menu</span>
             {isMobileMenuOpen ? (
-              <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              <svg
+                className="h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M6 18L18 6M6 6l12 12"
+                />
               </svg>
             ) : (
-              <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+              <svg
+                className="h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M4 6h16M4 12h16M4 18h16"
+                />
               </svg>
             )}
           </button>
@@ -181,6 +215,7 @@ export default function Navbar() {
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -10 }}
+              ref={mobileMenuRef}
               className="absolute top-full left-0 right-0 bg-pink-50/95 dark:bg-gray-900/95 backdrop-blur-md shadow-lg border-b border-pink-100 dark:border-gray-800 p-4 md:hidden"
             >
               <div className="flex flex-col space-y-1">
