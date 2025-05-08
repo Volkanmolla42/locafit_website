@@ -8,6 +8,8 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { NavigationEvents } from "@/components/common/NavigationEvents";
 import { Analytics } from "@vercel/analytics/react";
 import FloatingSupport from "@/components/common/FloatingSupport";
+import MaintenanceMode from "@/components/maintenance/MaintenanceMode";
+import { MAINTENANCE_MODE } from "@/utils/maintenance";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const playfair = Playfair_Display({
@@ -25,17 +27,23 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${playfair.variable} min-h-screen bg-white dark:bg-gray-900 text-gray-900 dark:text-white transition-colors`}
       >
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <Navbar />
-          <NavigationEvents />
-          <main className="pt-16 min-h-screen">
-            <Suspense fallback={<Loading />}>{children}</Suspense>
-          </main>
-          <Footer />
-          <div className="fixed bottom-4 right-4 z-50"></div>
-        </ThemeProvider>
-        <FloatingSupport />
-        <Analytics />
+        {MAINTENANCE_MODE ? (
+          <MaintenanceMode />
+        ) : (
+          <>
+            <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+              <Navbar />
+              <NavigationEvents />
+              <main className="pt-16 min-h-screen">
+                <Suspense fallback={<Loading />}>{children}</Suspense>
+              </main>
+              <Footer />
+              <div className="fixed bottom-4 right-4 z-50"></div>
+            </ThemeProvider>
+            <FloatingSupport />
+            <Analytics />
+          </>
+        )}
       </body>
     </html>
   );
