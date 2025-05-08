@@ -9,8 +9,8 @@ import { NavigationEvents } from "@/components/common/NavigationEvents";
 import { Analytics } from "@vercel/analytics/react";
 import FloatingSupport from "@/components/common/FloatingSupport";
 import MaintenanceMode from "@/components/maintenance/MaintenanceMode";
-import { MAINTENANCE_MODE } from "@/utils/maintenance";
 
+const MAINTENANCE_MODE = true;
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const playfair = Playfair_Display({
   subsets: ["latin"],
