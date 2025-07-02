@@ -10,7 +10,7 @@ import { Analytics } from "@vercel/analytics/react";
 import FloatingSupport from "@/components/common/FloatingSupport";
 import MaintenanceMode from "@/components/maintenance/MaintenanceMode";
 
-const MAINTENANCE_MODE = true;
+const MAINTENANCE_MODE = false;
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const playfair = Playfair_Display({
   subsets: ["latin"],
