@@ -9,9 +9,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { NavigationEvents } from "@/components/common/NavigationEvents";
 import FloatingSupport from "@/components/common/FloatingSupport";
 import MaintenanceMode from "@/components/maintenance/MaintenanceMode";
-
 import "./globals.css";
-
 const MAINTENANCE_MODE = false;
 
 const inter = Inter({ 
@@ -19,7 +17,6 @@ const inter = Inter({
   variable: "--font-inter",
   display: 'swap' 
 });
-
 const playfair = Playfair_Display({
   subsets: ["latin"],
   variable: "--font-playfair",
