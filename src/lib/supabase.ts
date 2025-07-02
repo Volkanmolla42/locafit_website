@@ -1,9 +1,16 @@
-import { createClient } from '@supabase/supabase-js'
+import { createBrowserClient } from '@supabase/ssr'
+import type { Database } from '@/types/database'
 
-const supabaseUrl = 'https://moxwhzxieseyfbyabcqk.supabase.co'
-const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_KEY
-if (!supabaseAnonKey) {
-  throw new Error('Missing NEXT_PUBLIC_SUPABASE_KEY environment variable')
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!
+const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+
+if (!supabaseUrl || !supabaseAnonKey) {
+  throw new Error('Missing Supabase environment variables')
 }
 
-export const supabase = createClient(supabaseUrl, supabaseAnonKey)
+export function createClient() {
+  return createBrowserClient<Database>(supabaseUrl, supabaseAnonKey)
+}
+
+// Legacy export for backward compatibility
+export const supabase = createClient()

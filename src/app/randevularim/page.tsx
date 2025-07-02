@@ -39,18 +39,17 @@ export default function RandevuPage() {
 
     try {
       const formattedPhone = formatPhoneNumber(phone)
-      console.log('Formatted Phone:', formattedPhone)
 
       // Test query without RLS
-      const { data: testMembers, error: testError } = await supabase
+      const { error: testError } = await supabase
         .from('members')
         .select('*')
         .limit(1)
 
-      console.log('Test Query:', { testMembers, testError })
-
       if (testError) {
-        console.error('Test Query Error:', testError)
+        if (process.env.NODE_ENV === 'development') {
+          console.error('Test Query Error:', testError)
+        }
         throw testError
       }
 
@@ -65,8 +64,6 @@ export default function RandevuPage() {
         `)
         .ilike('phone', formattedPhone)
         .maybeSingle()
-
-      console.log('Member Query Result:', { memberData, memberError, formattedPhone })
 
       if (memberError) {
         throw memberError
@@ -93,8 +90,6 @@ export default function RandevuPage() {
         .order('date', { ascending: true })
         .order('time', { ascending: true })
 
-      console.log('Appointments Query Result:', { appointmentsData, appointmentsError, memberId: memberData.id })
-
       if (appointmentsError) {
         throw appointmentsError
       }
@@ -106,7 +101,9 @@ export default function RandevuPage() {
       }
     } catch (error) {
       setError('Randevular getirilirken bir hata oluştu. Lütfen tekrar deneyin.')
-      console.error('Error:', error)
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Error:', error)
+      }
     } finally {
       setLoading(false)
     }

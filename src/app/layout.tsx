@@ -1,20 +1,29 @@
 import { Inter, Playfair_Display } from "next/font/google";
+import { Suspense } from "react";
+import { Analytics } from "@vercel/analytics/react";
+
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
-import "./globals.css";
-import { Suspense } from "react";
 import Loading from "./loading";
 import { ThemeProvider } from "@/components/theme-provider";
 import { NavigationEvents } from "@/components/common/NavigationEvents";
-import { Analytics } from "@vercel/analytics/react";
 import FloatingSupport from "@/components/common/FloatingSupport";
 import MaintenanceMode from "@/components/maintenance/MaintenanceMode";
 
-const MAINTENANCE_MODE = true;
-const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
+import "./globals.css";
+
+const MAINTENANCE_MODE = false;
+
+const inter = Inter({ 
+  subsets: ["latin"], 
+  variable: "--font-inter",
+  display: 'swap' 
+});
+
 const playfair = Playfair_Display({
   subsets: ["latin"],
   variable: "--font-playfair",
+  display: 'swap'
 });
 
 export default function RootLayout({
@@ -22,28 +31,33 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  if (MAINTENANCE_MODE) {
+    return (
+      <html lang="tr" suppressHydrationWarning>
+        <body className={`${inter.variable} ${playfair.variable}`}>
+          <MaintenanceMode />
+        </body>
+      </html>
+    );
+  }
+
   return (
     <html lang="tr" suppressHydrationWarning>
       <body
         className={`${inter.variable} ${playfair.variable} min-h-screen bg-white dark:bg-gray-900 text-gray-900 dark:text-white transition-colors`}
       >
-        {MAINTENANCE_MODE ? (
-          <MaintenanceMode />
-        ) : (
-          <>
-            <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-              <Navbar />
-              <NavigationEvents />
-              <main className="pt-16 min-h-screen">
-                <Suspense fallback={<Loading />}>{children}</Suspense>
-              </main>
-              <Footer />
-              <div className="fixed bottom-4 right-4 z-50"></div>
-            </ThemeProvider>
-            <FloatingSupport />
-            <Analytics />
-          </>
-        )}
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+          <Navbar />
+          <NavigationEvents />
+          <main className="pt-16 min-h-screen">
+            <Suspense fallback={<Loading />}>
+              {children}
+            </Suspense>
+          </main>
+          <Footer />
+          <FloatingSupport />
+        </ThemeProvider>
+        <Analytics />
       </body>
     </html>
   );

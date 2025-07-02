@@ -189,27 +189,13 @@
     animation-delay: 4s;
   }
 
-  /* Dark mode için özel animasyon stilleri */
+  /* Dark mode special animation styles */
   .dark .animate-blob {
     mix-blend-mode: soft-light;
     opacity: 0.4;
   }
 
-  /* Locomotive Scroll styles */
-  html.has-scroll-smooth {
-    overflow: hidden;
-  }
 
-  html.has-scroll-dragging {
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-  }
-
-  .has-scroll-smooth body {
-    overflow: hidden;
-  }
 
   /* Custom Scrollbar - Webkit (Chrome, Safari, Edge) */
   ::-webkit-scrollbar {
@@ -257,51 +243,7 @@
     scrollbar-color: rgba(255, 75, 129, 0.8) rgba(0, 0, 0, 0.05);
   }
 
-  /* Custom Scrollbar */
-  .c-scrollbar {
-    position: absolute;
-    right: 0;
-    top: 0;
-    width: 8px;
-    height: 100%;
-    transform-origin: center right;
-    transition:
-      transform 0.3s,
-      opacity 0.3s;
-    opacity: 0;
-  }
 
-  .c-scrollbar:hover {
-    transform: scaleX(1.45);
-  }
-
-  .c-scrollbar:hover,
-  .has-scroll-scrolling .c-scrollbar,
-  .has-scroll-dragging .c-scrollbar {
-    opacity: 1;
-  }
-
-  .c-scrollbar_thumb {
-    position: absolute;
-    top: 0;
-    right: 0;
-    background: rgba(255, 75, 129, 0.5);
-    width: 5px;
-    border-radius: 10px;
-    margin: 2px;
-    cursor: -webkit-grab;
-    cursor: grab;
-    transition: background 0.3s ease;
-  }
-
-  .has-scroll-dragging .c-scrollbar_thumb {
-    cursor: -webkit-grabbing;
-    cursor: grabbing;
-  }
-
-  .c-scrollbar_thumb:hover {
-    background: rgba(255, 75, 129, 0.8);
-  }
 
   /* Smooth Scroll */
   html {
@@ -459,21 +401,7 @@
     }
   }
 
-  /* Custom styles */
-  :root {
-    --foreground-rgb: 0, 0, 0;
-    --background-start-rgb: 214, 219, 220;
-    --background-end-rgb: 255, 255, 255;
-  }
 
-  body {
-    background: rgb(var(--background-end-rgb));
-    font-family: Arial, Helvetica, sans-serif;
-  }
 }
 
-@layer base {
-  :root {
-    --radius: 0.5rem;
-  }
-}
+

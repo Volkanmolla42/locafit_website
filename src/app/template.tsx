@@ -18,7 +18,7 @@ export default function Template({ children }: { children: React.ReactNode }) {
         initial="hidden"
         animate="enter"
         exit="exit"
-        transition={{ type: "linear" }}
+        transition={{ type: "spring" }}
       >
         {children}
       </motion.div>
