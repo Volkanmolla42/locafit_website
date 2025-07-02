@@ -45,7 +45,9 @@ export default function ServicesPage() {
         if (error) throw error
         setServices(data || [])
       } catch (error) {
-        console.error('Error fetching services:', error)
+        if (process.env.NODE_ENV === 'development') {
+          console.error('Error fetching services:', error)
+        }
       } finally {
         setLoading(false)
       }

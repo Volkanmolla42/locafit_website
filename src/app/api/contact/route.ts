@@ -32,7 +32,10 @@ export async function POST(request: Request) {
       { status: 200 }
     )
   } catch (error) {
-    console.error('Contact form error:', error)
+    // Log error for debugging in development
+    if (process.env.NODE_ENV === 'development') {
+      console.error('Contact form error:', error)
+    }
     return NextResponse.json(
       { error: 'Bir hata oluştu' },
       { status: 500 }

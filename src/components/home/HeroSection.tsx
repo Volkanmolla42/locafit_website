@@ -83,6 +83,7 @@ const HeroSection = () => {
 
         // Enhanced parallax effect
         gsap.to(".parallax-bg", {
+
           y: (i, el) =>
             (1 - parseFloat(el.getAttribute("data-speed") || "0.5")) *
             ScrollTrigger.maxScroll(window),
