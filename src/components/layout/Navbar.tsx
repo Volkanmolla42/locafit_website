@@ -1,14 +1,11 @@
 "use client";
 
-import { useState, useEffect, useRef, useCallback } from "react";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
-
-gsap.registerPlugin(ScrollTrigger);
+import { cn } from "@/lib/utils";
 
 const navItems = [
   { href: "/", label: "Ana Sayfa" },
@@ -63,51 +60,91 @@ export default function Navbar() {
   }, []);
 
   useEffect(() => {
-    const ctx = gsap.context(() => {
-      // Navbar background and height animation on scroll
-      gsap.to(headerRef.current, {
-        scrollTrigger: {
-          start: "top top",
-          end: "+=100",
-          scrub: true,
-        },
-        backgroundColor:
-          theme === "dark"
-            ? "rgba(17, 24, 39, 0.8)"
-            : "rgba(255, 255, 255, 0.8)",
-        height: "64px", // Smaller height when scrolled
-        ease: "power2.out",
-      });
+    const handleScroll = () => {
+      const isScrolled = window.scrollY > 50;
+      if (headerRef.current) {
+        const ctx = gsap.context(() => {
+          gsap.to(headerRef.current, {
+            scrollTrigger: {
+              start: "top top",
+              end: "+=100",
+              scrub: true,
+            },
+            backgroundColor:
+              theme === "dark"
+                ? "rgba(17, 24, 39, 0.8)"
+                : "rgba(255, 255, 255, 0.8)",
+            height: isScrolled ? "64px" : "80px",
+            ease: "power2.out",
+          });
 
-      // Logo size animation on scroll
-      gsap.to(".logo-container", {
-        scrollTrigger: {
-          start: "top top",
-          end: "+=100",
-          scrub: true,
-        },
-        scale: 0.85,
-        ease: "power2.out",
-      });
+          gsap.to(".logo-container", {
+            scrollTrigger: {
+              start: "top top",
+              end: "+=100",
+              scrub: true,
+            },
+            scale: isScrolled ? 0.85 : 1,
+            ease: "power2.out",
+          });
 
-      // Initial animations
-      gsap.from(".nav-item", {
-        y: -20,
-        opacity: 0,
-        stagger: 0.05,
-        duration: 0.5,
-        ease: "power2.out",
-      });
+          gsap.from(".nav-item", {
+            y: -20,
+            opacity: 0,
+            stagger: 0.05,
+            duration: 0.5,
+            ease: "power2.out",
+          });
 
-      gsap.from(logoRef.current, {
-        x: -20,
-        opacity: 0,
-        duration: 0.5,
-        ease: "power2.out",
-      });
-    });
+          gsap.from(logoRef.current, {
+            x: -20,
+            opacity: 0,
+            duration: 0.5,
+            ease: "power2.out",
+          });
+        }, headerRef);
 
-    return () => ctx.revert();
+        return () => ctx.revert();
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    // Initialize GSAP animations dynamically
+    const initGSAP = async () => {
+      try {
+        const { gsap } = await import("gsap");
+        const { ScrollTrigger } = await import("gsap/ScrollTrigger");
+
+        gsap.registerPlugin(ScrollTrigger);
+
+        const ctx = gsap.context(() => {
+          gsap.fromTo(
+            navRef.current,
+            {
+              y: -100,
+              opacity: 0,
+            },
+            {
+              y: 0,
+              opacity: 1,
+              duration: 1,
+              ease: "power3.out",
+            }
+          );
+        }, navRef);
+
+        return () => ctx.revert();
+      } catch (error) {
+        console.error('Failed to load GSAP:', error);
+      }
+    };
+
+    initGSAP();
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
   }, [theme]);
 
   return (

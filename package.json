@@ -6,7 +6,11 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "analyze": "cross-env ANALYZE=true next build",
+    "build:analyze": "npm run build && npm run analyze",
+    "performance:check": "node scripts/optimize-performance.js",
+    "performance:audit": "npm run performance:check && npm run build:analyze"
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",
@@ -36,11 +40,13 @@
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.2.0",
+    "@next/bundle-analyzer": "^15.3.4",
     "@tailwindcss/postcss": "^4.0.0",
     "@types/locomotive-scroll": "^4.1.4",
     "@types/node": "^22.10.10",
     "@types/react": "^19.0.8",
     "@types/react-dom": "^19.0.3",
+    "cross-env": "^7.0.3",
     "eslint": "^9.19.0",
     "eslint-config-next": "15.1.6",
     "postcss": "^8.5.1",

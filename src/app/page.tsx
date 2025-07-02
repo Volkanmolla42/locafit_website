@@ -1,7 +1,21 @@
-import HeroSection from '@/components/home/HeroSection'
-import ServicesSection from '@/components/home/ServicesSection'
-import FeaturesSection from '@/components/home/FeaturesSection'
-import EMSInfoSection from '@/components/home/EMSInfoSection'
+import dynamic from 'next/dynamic'
+
+// Dynamic imports for code splitting - components will load only when needed
+const HeroSection = dynamic(() => import('@/components/home/HeroSection'), {
+  loading: () => <div className="min-h-screen bg-gradient-to-br from-pink-50 to-pink-100 dark:from-gray-900 dark:to-gray-800 animate-pulse" />,
+})
+
+const ServicesSection = dynamic(() => import('@/components/home/ServicesSection'), {
+  loading: () => <div className="h-96 bg-gray-100 dark:bg-gray-800 animate-pulse" />,
+})
+
+const FeaturesSection = dynamic(() => import('@/components/home/FeaturesSection'), {
+  loading: () => <div className="h-96 bg-gray-50 dark:bg-gray-900 animate-pulse" />,
+})
+
+const EMSInfoSection = dynamic(() => import('@/components/home/EMSInfoSection'), {
+  loading: () => <div className="h-96 bg-gray-100 dark:bg-gray-800 animate-pulse" />,
+})
 
 export default function Home() {
   return (

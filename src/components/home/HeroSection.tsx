@@ -122,6 +122,10 @@ const HeroSection = () => {
               width={80}
               height={80}
               className="hero-flower mx-auto"
+              priority={true}
+              loading="eager"
+              sizes="80px"
+              quality={90}
             />
           </div>
 
@@ -157,6 +161,7 @@ const HeroSection = () => {
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 1440 320"
           className="w-full"
+          aria-hidden="true"
         >
           <path
             fill="currentColor"
